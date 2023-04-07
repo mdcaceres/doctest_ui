@@ -1,0 +1,25 @@
+<div class="auth-container">
+    <img mat-card-image src="../../../../assets/logo.png" alt="logo" class="logo">
+    <div class="auth-header">
+        <h3>Sign in to Doctest</h3>
+    </div>
+    <mat-card>
+        <mat-card-content class="card-content">
+            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" class="form-container">
+                <div class="fields-container">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput placeholder="youremail@example.com" formControlName="email" required>
+                        <mat-error *ngIf="loginForm.value.email!.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter your password</mat-label>
+                      <input matInput formControlName="password" required>
+                    </mat-form-field>
+                </div>
+                <button type="submit" mat-raised-button color="warn" class="login-button">Login</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

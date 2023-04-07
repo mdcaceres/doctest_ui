@@ -1,0 +1,75 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      (click)="drawer.toggle()">
+    <mat-toolbar class="toolbar">
+    </mat-toolbar>
+    <mat-nav-list>
+      <div>
+        <a mat-list-item href="#">Suits</a>
+        <a mat-list-item href="#">Test Cases</a>
+        <a mat-list-item href="#">Bugs</a>
+        <a mat-list-item href="#">Executions</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+          <mat-icon aria-hidden="false" aria-label="menu icon" fontIcon="menu"></mat-icon>
+      </button>
+
+<!--menu -->
+      <div>
+        <button mat-button [matMenuTriggerFor]="aboveMenu">
+          Projects
+        </button>
+        <mat-menu #aboveMenu="matMenu" yPosition="above">
+          <button mat-menu-item>Create new</button>
+          <button mat-menu-item routerLink="./projects">View all</button>
+        </mat-menu>
+        <!-- [routerLink]="[{ outlets: { content: ['/projects'] } }]"-->
+  
+        <button mat-button [matMenuTriggerFor]="belowMenu">
+          Teamspace
+        </button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item>Create new post</button>
+          <button mat-menu-item>Go to team space</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="belowMenu">
+         <!--<mat-icon aria-hidden="false" aria-label="notifications icon" fontIcon="bug_report"></mat-icon> -->
+         Bugs
+        </button>
+        <button mat-button [matMenuTriggerFor]="belowMenu">
+          Reports
+        </button>
+      </div>
+      
+      <div>
+        <button mat-button><mat-icon aria-hidden="false" aria-label="notifications icon" fontIcon="notifications"></mat-icon></button>
+        
+        <button mat-button [matMenuTriggerFor]="profileMenu"><mat-icon aria-hidden="false" aria-label="face icon" fontIcon="face"></mat-icon></button>
+        <mat-menu #profileMenu="matMenu" yPosition="below">
+          <button mat-menu-item>Profile</button>
+          <button mat-menu-item routerLink="/auth/login" routerLinkActive="active">
+            <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout"></mat-icon>
+
+          </button>
+        </mat-menu>
+      </div>
+      
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <app-dashboard></app-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
