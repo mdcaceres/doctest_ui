@@ -18,12 +18,12 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { QuillModule } from 'ngx-quill';
-import { ProjectsComponent } from './admin/components/projects/projects.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { MessagingService } from './service/messaging.service';
 import { AsyncPipe } from '@angular/common';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ import { AsyncPipe } from '@angular/common';
     MatListModule,
     MatGridListModule,
     MatMenuModule,
+    MatBadgeModule,
     QuillModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)

@@ -1,0 +1,27 @@
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.auth-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    padding-top: 5%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.fields-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.logo{
+    width: 10%;
+    border-radius: 50%;
+}

@@ -11,6 +11,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   
   login(user: User) {
-    return this.http.post<User>(`${environment.apiUrl}/auth/login`, user)
+    return this.http.post<User>(`${environment.apiUrl}/auth/login`, user, { withCredentials: true })
+  }
+
+  signup(user:any) {
+    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user, {withCredentials: true})
   }
 }

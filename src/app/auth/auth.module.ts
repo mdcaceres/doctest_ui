@@ -10,12 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
+import { CookieService } from 'ngx-cookie-service';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav
     HttpClientModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    CookieService
   ]
 })
 export class AuthModule { }

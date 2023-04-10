@@ -5,6 +5,10 @@ import { Subscription } from 'rxjs';
 import { User } from '../../interfaces/user';
 import { AuthService } from '../../services/auth.service';
 import swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
+import jwt_decode from 'jwt-decode';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Claims } from '../../interfaces/claims';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +19,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
   private sub: Subscription = new Subscription();
   hide = true;
-  user!:User
+  helper = new JwtHelperService();
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
     localStorage.clear();
@@ -32,8 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       Validators.maxLength(25)
       ],
       password : ['',
-      Validators.required,
-      Validators.pattern('/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})/gm')
+      Validators.required/*,
+      Validators.pattern('/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})/gm')*/
       ]
     });
   }
@@ -43,31 +48,48 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(login: FormGroup){
-    let email = this.loginForm.value.email;
-    let password = this.loginForm.value.password;
-    this.user.email = email;
-    this.user.password = password;
-
-    console.log(this.loginForm.value.email);
-    console.log(this.loginForm.value.password);
-    console.log("login: ",this.user);
+    let email = this.loginForm.get('email')!.value;
+    let password = this.loginForm.get('password')!.value;
+    
+    let user: User = {
+      email: email,
+      password: password 
+    };
 
     this.sub.add(
-      this.auth.login(this.user).subscribe({
+      this.auth.login(user).subscribe({
         next: (resp: any) => {
-          console.log(resp);
+          let tigetToken = this.cookieService.get('X-Tiger-Token');
+          console.log("getcookie:" + tigetToken)
+    
+
+          let decoded = jwt_decode<Claims>(tigetToken);
+
+          console.log("decoded token:" + decoded);
+          console.log("decoded name:" + decoded.user_name);
+
+          console.log("wtf");
+
+          let helperDecoded = this.helper.decodeToken(tigetToken);
+
+          console.log("helper decoded token:" + helperDecoded);
+
+          console.log("wtf2");
+
+
           this.router.navigate(['./admin'])
         },
-        error: () => {
-          swal.fire("Error!", "Usuario o Contraseña incorrectos!", "error");
+        error: (err) => {
+          console.log(err); 
+          swal.fire("Error", "invalid email or password", "error");
         },
       })
     );
 
   }
 
-  get name() {
-    return this.loginForm.get('name');
+  get password() {
+    return this.loginForm.get('password');
   }
 
   get email() {
@@ -80,4 +102,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     return this.loginForm.value.email.hasError('email') ? 'Not a valid email' : '';
   }
+
 }

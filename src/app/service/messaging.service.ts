@@ -22,8 +22,11 @@ export class MessagingService {
 
   receiveMessaging(){
     this.angularFireMessaging.messages.subscribe((payload) => {
-      console.log("new message recived", payload); 
       this.currentMessage.next(payload)
     })
+  }
+
+  getMessages() {
+    return this.currentMessage; 
   }
 }

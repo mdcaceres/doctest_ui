@@ -2,34 +2,35 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { TeamComponent } from './components/team/team.component';
-import { BugComponent } from './components/bug/bug.component';
-import { ReportComponent } from './components/report/report.component';
 import { ProjectsListComponent } from './components/project/projects-list/projects-list.component';
+import { TeamspaceDashboardComponent } from './components/teamspace/teamspace-dashboard/teamspace-dashboard.component';
+import { BugDashboardComponent } from './components/bug/bug-dashboard/bug-dashboard.component';
+import { ProjectDashboardComponent } from './components/project/project-dashboard/project-dashboard.component';
+import { ReportsDashboardComponent } from './components/reports/reports-dashboard/reports-dashboard.component';
+import { HomeComponent } from './components/home/home/home.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 @NgModule({
   declarations: [
-    TeamComponent,
-    BugComponent,
-    ReportComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    TeamspaceDashboardComponent,
+    BugDashboardComponent,
+    ProjectDashboardComponent,
+    ReportsDashboardComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class AdminModule { }

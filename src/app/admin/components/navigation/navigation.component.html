@@ -28,6 +28,10 @@
 
 <!--menu -->
       <div>
+        <button mat-button  routerLink="./home">
+          Home
+        </button>
+
         <button mat-button [matMenuTriggerFor]="aboveMenu">
           Projects
         </button>
@@ -42,21 +46,32 @@
         </button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
           <button mat-menu-item>Create new post</button>
-          <button mat-menu-item>Go to team space</button>
+          <button mat-menu-item routerLink="./teamspace">Go to team space</button>
         </mat-menu>
-        <button mat-button [matMenuTriggerFor]="belowMenu">
+        <button mat-button [matMenuTriggerFor]="belowMenu" routerLink="./bugs">
          <!--<mat-icon aria-hidden="false" aria-label="notifications icon" fontIcon="bug_report"></mat-icon> -->
          Bugs
         </button>
-        <button mat-button [matMenuTriggerFor]="belowMenu">
+        <button mat-button [matMenuTriggerFor]="belowMenu" routerLink="./reports">
           Reports
         </button>
       </div>
       
       <div>
-        <button mat-button><mat-icon aria-hidden="false" aria-label="notifications icon" fontIcon="notifications"></mat-icon></button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger class="notification-menu"><mat-icon  [matBadge]="notifications.length" matBadgePosition="after" matBadgeColor="warn"  [matBadgeHidden]="hidden" aria-hidden="false" aria-label="notifications icon" fontIcon="notifications"></mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <mat-list role="list">
+            <mat-list-item *ngFor="let notification of notifications" class="notification-item" role="listitem">
+              <mat-card>
+                <mat-card-content>
+                  <p class="notification-message">{{notification.title}}: {{notification.body}}</p></mat-card-content>
+              </mat-card>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </mat-menu>
         
-        <button mat-button [matMenuTriggerFor]="profileMenu"><mat-icon aria-hidden="false" aria-label="face icon" fontIcon="face"></mat-icon></button>
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu"><mat-icon aria-hidden="false" aria-label="face icon" fontIcon="face"></mat-icon></button>
         <mat-menu #profileMenu="matMenu" yPosition="below">
           <button mat-menu-item>Profile</button>
           <button mat-menu-item routerLink="/auth/login" routerLinkActive="active">
