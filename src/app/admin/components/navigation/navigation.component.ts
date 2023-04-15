@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MessagingService } from 'src/app/service/messaging.service';
 import { MatMenuTrigger } from '@angular/material/menu';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateProjectComponent } from '../project/create-project/create-project.component';
 
 @Component({
   selector: 'app-navigation',
@@ -14,6 +16,8 @@ export class NavigationComponent implements OnInit{
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
   notifications! : Notification[]; 
   hidden = false;
+  userName!: string;
+  userId! : string; 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -23,13 +27,16 @@ export class NavigationComponent implements OnInit{
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private messaging : MessagingService) {
+    private messaging : MessagingService,
+    private dialog: MatDialog) {
       
     }
 
   ngOnInit(): void {
     this.notifications = []; 
     this.getNotifications();
+    this.userName = localStorage.getItem('userName')!;
+    this.userId = localStorage.getItem('userId')!;
   }
 
   
@@ -60,4 +67,7 @@ export class NavigationComponent implements OnInit{
     })
   }
 
+  openDialog() {
+    this.dialog.open(CreateProjectComponent);
+  }
 }

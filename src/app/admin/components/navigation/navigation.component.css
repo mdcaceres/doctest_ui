@@ -24,3 +24,10 @@
 .notification-message{
   font-size: 8px;
 }
+
+::ng-deep .mat-mdc-menu-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

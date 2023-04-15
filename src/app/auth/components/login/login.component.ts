@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Claims } from '../../interfaces/claims';
+import { Role } from '../../interfaces/role';
 
 @Component({
   selector: 'app-login',
@@ -60,22 +61,20 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.auth.login(user).subscribe({
         next: (resp: any) => {
           let tigetToken = this.cookieService.get('X-Tiger-Token');
-          console.log("getcookie:" + tigetToken)
-    
-
           let decoded = jwt_decode<Claims>(tigetToken);
 
-          console.log("decoded token:" + decoded);
-          console.log("decoded name:" + decoded.user_name);
+          localStorage.setItem('userId', JSON.stringify(decoded.ID));
+          localStorage.setItem('userName', decoded.user_name!);
 
-          console.log("wtf");
+          let roles = new Map<number,string>(); 
 
-          let helperDecoded = this.helper.decodeToken(tigetToken);
 
-          console.log("helper decoded token:" + helperDecoded);
+          for(let role of decoded.Roles!) {
+            let userRole = role as Role; 
+            roles.set(userRole.ID!, userRole.name!); 
+          }
 
-          console.log("wtf2");
-
+          localStorage.setItem('roles', JSON.stringify(Array.from(roles.entries())))
 
           this.router.navigate(['./admin'])
         },

@@ -36,7 +36,7 @@
           Projects
         </button>
         <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item>Create new</button>
+          <button mat-raised-button color="warn" (click)="openDialog()">New</button>
           <button mat-menu-item routerLink="./projects">View all</button>
         </mat-menu>
         <!-- [routerLink]="[{ outlets: { content: ['/projects'] } }]"-->
@@ -72,11 +72,12 @@
         </mat-menu>
         
         <button mat-icon-button [matMenuTriggerFor]="profileMenu"><mat-icon aria-hidden="false" aria-label="face icon" fontIcon="face"></mat-icon></button>
-        <mat-menu #profileMenu="matMenu" yPosition="below">
-          <button mat-menu-item>Profile</button>
+        <mat-menu #profileMenu="matMenu" yPosition="below" class="profile_menu">
+          <p>{{userName}}</p>
+          <button mat-menu-item>View profile</button>
+          <mat-divider></mat-divider>
           <button mat-menu-item routerLink="/auth/login" routerLinkActive="active">
             <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout"></mat-icon>
-
           </button>
         </mat-menu>
       </div>

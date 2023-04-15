@@ -12,6 +12,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { CreateProjectComponent } from './components/project/create-project/create-project.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectService } from './service/project.service';
 
 
 
@@ -22,7 +30,8 @@ import { MatMenuModule } from '@angular/material/menu';
     BugDashboardComponent,
     ProjectDashboardComponent,
     ReportsDashboardComponent,
-    HomeComponent
+    HomeComponent,
+    CreateProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +39,19 @@ import { MatMenuModule } from '@angular/material/menu';
     MatGridListModule,
     MatCardModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    HttpClientModule
+  ],
+  providers: [
+    ProjectService
   ]
 })
 export class AdminModule { }

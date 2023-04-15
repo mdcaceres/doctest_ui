@@ -1,0 +1,37 @@
+<div class="create-container">
+    <div class="create-header">
+        <h3>Create new project</h3>
+    </div>
+    <mat-card>
+        <mat-card-content class="card-content">
+            <form [formGroup]="projectForm" (ngSubmit)="create(projectForm)" class="form-container">
+                <div class="fields-container">
+                    <!--
+                    <mat-form-field class="fields-container">
+                        <button type="button" mat-raised-button (change)="onFileSelected($event)">Choose Photo</button>
+                    </mat-form-field>-->
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Project name</mat-label>
+                        <input matInput placeholder="ExampleProject" formControlName="name" required>
+                        <mat-error *ngIf="projectForm.value.name!.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <input matInput  >
+                        <textarea matInput placeholder="Example project that we are going to test" formControlName="description" required></textarea>
+                        <mat-error *ngIf="projectForm.value.description!.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Owner</mat-label>
+                        <input matInput formControlName="description">
+                        <mat-error *ngIf="projectForm.value.description!.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <button type="submit" mat-raised-button color="warn" class="create-button">create</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

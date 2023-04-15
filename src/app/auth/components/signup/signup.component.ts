@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MessagingService } from 'src/app/service/messaging.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
   signupForm!: FormGroup;
 
-  constructor(private fb : FormBuilder, private auth: AuthService, private router: Router) {}
+  constructor(private fb : FormBuilder, private auth: AuthService, private messaging : MessagingService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -48,6 +49,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   signup(form : FormGroup) {
+
     let email = this.signupForm.get('email')!.value;
     let password = this.signupForm.get('password')!.value;
     let confirm = this.signupForm.get('confirm')!.value;
@@ -84,7 +86,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           console.log("wtf2");*/
 
 
-          this.router.navigate(['./login'])
+          this.router.navigate(['./admin'])
         },
         error: (err) => {
           console.log(err); 
