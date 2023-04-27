@@ -1,0 +1,24 @@
+<h3 mat-dialog-title>Invite a user</h3>
+<mat-dialog-content class="invitation-container">
+    <form class="form-fields-container" [formGroup]="invitationForm" (ngSubmit)="send(invitationForm)">
+        <mat-form-field appearance="fill">
+            <mat-label>User</mat-label>
+            <input formControlName="user" type="text" matInput placeholder="Q&Astronaut">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role" name="role">
+                <mat-option *ngFor="let role of roles" [value]="role.id">
+                {{role.name}}
+                </mat-option>
+             </mat-select>
+            <mat-error *ngIf="invitationForm.hasError('required')">You must make a selection</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+        <button mat-button mat-dialog-close>close</button>
+        <button mat-button [disabled]="!invitationForm.valid" [mat-dialog-close]="true">send</button>
+</mat-dialog-actions>

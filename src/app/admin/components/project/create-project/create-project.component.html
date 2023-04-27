@@ -4,13 +4,13 @@
     </div>
     <mat-card>
         <mat-card-content class="card-content">
+            <div appearance="fill">
+                <mat-label for="photoInput">{{file ? file.name.substring(0,10) : 'add photo' }}</mat-label>
+                <input id="photoInput" #csvInput hidden="true" type="file" (change)="onFileSelected($event)">
+                <button mat-flat-button color="primary" (click)="csvInput.click()">Choose File</button>
+            </div>
             <form [formGroup]="projectForm" (ngSubmit)="create(projectForm)" class="form-container">
                 <div class="fields-container">
-                    <!--
-                    <mat-form-field class="fields-container">
-                        <button type="button" mat-raised-button (change)="onFileSelected($event)">Choose Photo</button>
-                    </mat-form-field>-->
-
                     <mat-form-field appearance="fill">
                         <mat-label>Project name</mat-label>
                         <input matInput placeholder="ExampleProject" formControlName="name" required>
@@ -21,12 +21,6 @@
                         <mat-label>Description</mat-label>
                         <input matInput  >
                         <textarea matInput placeholder="Example project that we are going to test" formControlName="description" required></textarea>
-                        <mat-error *ngIf="projectForm.value.description!.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill">
-                        <mat-label>Owner</mat-label>
-                        <input matInput formControlName="description">
                         <mat-error *ngIf="projectForm.value.description!.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>

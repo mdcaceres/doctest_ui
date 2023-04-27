@@ -3,7 +3,6 @@
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
-
 html{
     background-color: #303030;
 }

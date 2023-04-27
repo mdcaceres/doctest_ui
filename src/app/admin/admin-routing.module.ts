@@ -6,6 +6,7 @@ import { TeamspaceDashboardComponent } from './components/teamspace/teamspace-da
 import { BugDashboardComponent } from './components/bug/bug-dashboard/bug-dashboard.component';
 import { ReportsDashboardComponent } from './components/reports/reports-dashboard/reports-dashboard.component';
 import { HomeComponent } from './components/home/home/home.component';
+import { ProjectDashboardComponent } from './components/project/project-dashboard/project-dashboard.component';
 
 
 const routes: Routes = [
@@ -14,10 +15,12 @@ const routes: Routes = [
     component: NavigationComponent,
     children: [
       {path: 'home', component: HomeComponent},
-      {path: 'projects', component: ProjectsListComponent},
       {path:'teamspace', component: TeamspaceDashboardComponent},
       {path:'bugs', component: BugDashboardComponent},
-      {path:'reports', component: ReportsDashboardComponent}
+      {path:'reports', component: ReportsDashboardComponent},
+      {path: 'projects', component: ProjectsListComponent, children: [
+        {path: 'id/:id', component: ProjectDashboardComponent}
+       ]}
     ]
   },
 

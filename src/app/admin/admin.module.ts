@@ -20,7 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './service/project.service';
-
+import { ProjectInvitationComponent } from './components/project/project-invitation/project-invitation.component';
+import { MatOption, MatOptionModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { UserService } from './service/user.service';
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import { ProjectService } from './service/project.service';
     ReportsDashboardComponent,
     HomeComponent,
     CreateProjectComponent,
+    ProjectInvitationComponent,
   ],
   imports: [
     CommonModule,
@@ -45,13 +49,16 @@ import { ProjectService } from './service/project.service';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     HttpClientModule
   ],
   providers: [
-    ProjectService
+    ProjectService,
+    UserService
   ]
 })
 export class AdminModule { }
