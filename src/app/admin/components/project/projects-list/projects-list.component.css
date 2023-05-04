@@ -1,0 +1,6 @@
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+}

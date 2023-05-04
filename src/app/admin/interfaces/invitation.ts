@@ -1,5 +1,6 @@
 export interface Invitation {
     inviterId: string, 
     invitedId: string, 
-    ProjectId: string
+    ProjectId: string,
+    role: string
 }

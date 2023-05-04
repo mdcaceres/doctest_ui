@@ -12,15 +12,12 @@ export class AppComponent {
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
   disabled = false;
-  message: any
 
-  constructor(private messagingService:MessagingService) {
+  constructor() {
 
   }
 
   ngOnInit(){
-    this.messagingService.requestPermission(); 
-    this.messagingService.receiveMessaging();
-    this.message = this.messagingService.currentMessage;
+    
   }
 }

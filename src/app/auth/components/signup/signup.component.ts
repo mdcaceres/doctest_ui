@@ -16,7 +16,11 @@ export class SignupComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
   signupForm!: FormGroup;
 
-  constructor(private fb : FormBuilder, private auth: AuthService, private messaging : MessagingService, private router: Router) {}
+  constructor(
+    private fb : FormBuilder, 
+    private auth: AuthService, 
+    private messaging : MessagingService, 
+    private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -66,26 +70,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.sub.add(
       this.auth.signup(user).subscribe({
         next: (resp: any) => {
-
-          console.log("confirm" + confirm)
-          /*let tigetToken = this.cookieService.get('X-Tiger-Token');
-          console.log("getcookie:" + tigetToken)
-    
-
-          let decoded = jwt_decode<Claims>(tigetToken);
-
-          console.log("decoded token:" + decoded);
-          console.log("decoded name:" + decoded.user_name);
-
-          console.log("wtf");
-
-          let helperDecoded = this.helper.decodeToken(tigetToken);
-
-          console.log("helper decoded token:" + helperDecoded);
-
-          console.log("wtf2");*/
-
-
           this.router.navigate(['./admin'])
         },
         error: (err) => {

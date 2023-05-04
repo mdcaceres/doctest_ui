@@ -24,6 +24,8 @@ import { environment } from 'src/environments/environment';
 import { MessagingService } from './service/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import {MatBadgeModule} from '@angular/material/badge';
+import { UserService } from './admin/service/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatBadgeModule,
     QuillModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule
   ],
   providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]

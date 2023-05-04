@@ -1,1 +1,11 @@
-<p>projects-list works!</p>
+<mat-selection-list [multiple]="false" [hideSingleSelectionIndicator]="true">
+    <div mat-subheader>Projects</div>
+    <mat-list-option *ngFor="let project of projects">
+        <mat-icon matListItemIcon>assignment</mat-icon>
+        <div matListItemTitle>{{ project.name }}</div>
+        <div matListItemLine>{{project.description}}</div>
+        <div matListItemLine>owned by: <b>{{ project.userId | userName | async }}</b></div>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+</mat-selection-list>
+

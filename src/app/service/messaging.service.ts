@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging'
+import { UserService } from '../admin/service/user.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagingService {
 
-  currentMessage = new BehaviorSubject<any>(null);
+  constructor(private angularFireMessaging:AngularFireMessaging, private user: UserService) {
+   }
 
-  constructor(private angularFireMessaging:AngularFireMessaging) { }
-
-  /*
-  requestPermission(){
-    this.angularFireMessaging.requestToken.subscribe((token) => {
-      return token
-    },
-    (err) => {
-      console.log("Unable to get permission to notifications", err)
-    });
-  }
-  */
-
-  requestPermission() {
+ requestPermission(id:string) {
     this.angularFireMessaging.requestToken.subscribe({
       next : (token) => {
-        return token
+        this.user.updateToken(id, token!).subscribe({
+          next: (response) => {
+            console.log("put fcm token");
+          },
+          error: (error) => {
+            console.log("Error while updating token");
+          }
+        });
       },
       error : (error) => {
         console.log("Unable to get permission to notifications", error)
@@ -33,13 +30,4 @@ export class MessagingService {
     })
   }
 
-  receiveMessaging(){
-    this.angularFireMessaging.messages.subscribe((payload) => {
-      this.currentMessage.next(payload)
-    })
-  }
-
-  getMessages() {
-    return this.currentMessage; 
-  }
 }

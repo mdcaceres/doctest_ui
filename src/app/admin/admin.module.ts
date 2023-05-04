@@ -18,12 +18,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './service/project.service';
 import { ProjectInvitationComponent } from './components/project/project-invitation/project-invitation.component';
 import { MatOption, MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { UserService } from './service/user.service';
+import { InvitationService } from './service/invitation.service';
+import { MessagingService } from '../service/messaging.service';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { UserNamePipe } from './pipes/username';
 
 
 @NgModule({
@@ -36,6 +41,7 @@ import { UserService } from './service/user.service';
     HomeComponent,
     CreateProjectComponent,
     ProjectInvitationComponent,
+    UserNamePipe
   ],
   imports: [
     CommonModule,
@@ -51,6 +57,8 @@ import { UserService } from './service/user.service';
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
+    MatListModule,
+    MatDividerModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
@@ -58,7 +66,9 @@ import { UserService } from './service/user.service';
   ],
   providers: [
     ProjectService,
-    UserService
+    UserService,
+    InvitationService,
+    MessagingService
   ]
 })
 export class AdminModule { }

@@ -13,4 +13,8 @@ export class ProjectService {
   create(project:Project) {
     return this.http.post<Project>(`${environment.apiUrl}/projects`, project, {withCredentials: true})
   }
+
+  getAll() {
+    return this.http.get<Project[]>(`${environment.apiUrl}/projects`, {withCredentials: true})
+  }
 }

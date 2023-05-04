@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MessagingService } from 'src/app/service/messaging.service';
 import { MatMenuTrigger } from '@angular/material/menu';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateProjectComponent } from '../project/create-project/create-project.component';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-navigation',
@@ -28,13 +29,32 @@ export class NavigationComponent implements OnInit{
   constructor(
     private breakpointObserver: BreakpointObserver,
     private messaging : MessagingService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private messagingService:MessagingService,
+    private angularFireMessaging:AngularFireMessaging) {
       
     }
 
   ngOnInit(): void {
+    this.messagingService.requestPermission(this.userId); 
     this.notifications = []; 
-    this.getNotifications();
+
+    this.angularFireMessaging.messages.subscribe({
+      next : (message) => {
+        if(this.notifications.length < 1) {
+          this.toggleBadgeVisibility();
+        } else {
+          this.hidden = false;
+        }
+        if (message != null) {
+          this.notifications.push(message.notification as Notification);
+        }
+      },
+      error : (err:any) => {
+        console.log("error obtaining notifications");
+      }
+    })
+
     this.userName = localStorage.getItem('userName')!;
     this.userId = localStorage.getItem('userId')!;
   }
@@ -42,29 +62,6 @@ export class NavigationComponent implements OnInit{
   
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
-  }
-
-  getNotifications(){
-    this.messaging.getMessages().subscribe({
-      next : (message) => {
-        if(this.notifications.length == 0) {
-          this.toggleBadgeVisibility();
-        } else {
-          this.hidden = false;
-        }
-        console.log("notificacion desde navigation");
-        console.log(message);
-        if (message != null) {
-          this.notifications.push(message.notification as Notification);
-        }
-      
-        console.log(this.notifications.length);
-        console.log(JSON.stringify(this.notifications));
-      },
-      error : (err) => {
-        console.log("error obtaining notifications");
-      }
-    })
   }
 
   openDialog() {

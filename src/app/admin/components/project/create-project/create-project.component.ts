@@ -61,15 +61,9 @@ export class CreateProjectComponent {
     this.sub.add(
       this.project.create(newProject).subscribe({
         next: (resp: any) => {
-          console.log("se guardo exitosamente")
           const queryParams: Params = {id:resp.data.project.id};
           this.dialog.closeAll(); 
-         this.router.navigate(['admin/projects/id'],
-            {
-              relativeTo: this.activatedRoute, 
-              queryParams: queryParams,
-              queryParamsHandling: 'merge'
-            })
+          this.router.navigate([`admin/project/${resp.data.project.id}`])
         },
         error: (err) => {
           console.log(err); 

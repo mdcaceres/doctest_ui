@@ -18,9 +18,8 @@ const routes: Routes = [
       {path:'teamspace', component: TeamspaceDashboardComponent},
       {path:'bugs', component: BugDashboardComponent},
       {path:'reports', component: ReportsDashboardComponent},
-      {path: 'projects', component: ProjectsListComponent, children: [
-        {path: 'id/:id', component: ProjectDashboardComponent}
-       ]}
+      {path:'project/:id', component: ProjectDashboardComponent},
+      {path: 'projects', component: ProjectsListComponent},
     ]
   },
 
