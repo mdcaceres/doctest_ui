@@ -7,6 +7,7 @@ import { BugDashboardComponent } from './components/bug/bug-dashboard/bug-dashbo
 import { ReportsDashboardComponent } from './components/reports/reports-dashboard/reports-dashboard.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { ProjectDashboardComponent } from './components/project/project-dashboard/project-dashboard.component';
+import { CreateTestComponent } from './components/test/create-test/create-test.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
       {path:'bugs', component: BugDashboardComponent},
       {path:'reports', component: ReportsDashboardComponent},
       {path:'project/:id', component: ProjectDashboardComponent},
+      {path:'project/:id/new_test', component: CreateTestComponent},
       {path: 'projects', component: ProjectsListComponent},
     ]
   },

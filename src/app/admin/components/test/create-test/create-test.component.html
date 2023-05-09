@@ -1,0 +1,91 @@
+
+<form [formGroup]="testCaseForm" class="form-container">
+    <div>
+        <h3>Test Case</h3>
+    </div>
+
+    <div class="form-row">
+        <mat-form-field appearance="fill" class="big">
+            <mat-label>Title</mat-label>
+            <input formControlName="title" type="text" matInput placeholder="TestGetUserById">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="small">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type" name="type">
+                <mat-option *ngFor="let t of types" [value]="t.name">
+                {{t.name}}
+                </mat-option>
+             </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-row">
+        <mat-form-field appearance="fill" class="big">
+            <mat-label>Suite</mat-label>
+            <mat-select formControlName="suite" name="suite">
+                <mat-option *ngFor="let s of suites" [value]="s.id">
+                {{s.name}}
+                </mat-option>
+                <mat-option>
+                    
+                    <mat-icon>add</mat-icon>
+                    add new suite
+                </mat-option>
+             </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="small">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority" name="priority">
+                <mat-option *ngFor="let p of priorities" [value]="p.id">
+                {{p.name}}
+                </mat-option>
+             </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Test case for our project list" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="small">
+        <mat-label>Duration</mat-label>
+        <input type="time" matInput placeholder="00:00" formControlName="duration"/>
+    </mat-form-field>
+
+    <div class="steps-container">
+        <div>
+            <h3>Steps</h3>
+        </div>
+
+        <div appearance="fill" formArrayName="steps" *ngFor="let step of steps.controls; let i = index">
+            <div [formGroupName]="i" class="steps-row">
+                <mat-form-field appearance="fill" class="big">
+                    <input matInput type="text" placeholder="description">
+                </mat-form-field>
+                <div class="swap-container">
+                    <mat-icon>swap_horiz</mat-icon>
+                </div>
+                <mat-form-field appearance="fill" class="big">
+                    <input matInput type="text" placeholder="result">
+                </mat-form-field>
+                <div class="remove-container">
+                    <button class="remove-icon" *ngIf="i != 0" mat-icon-button (click)="removeStep(i)">
+                        <mat-icon color="warm">remove</mat-icon>
+                    </button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="icon-container">
+            <button mat-fab (click)="add()">
+                <mat-icon class="icon">add_circle</mat-icon>
+            </button>
+        </div>
+    </div>
+    
+
+</form>
+

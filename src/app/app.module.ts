@@ -14,7 +14,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { QuillModule } from 'ngx-quill';
@@ -31,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     NavigationComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,

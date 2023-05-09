@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import swal  from 'sweetalert2';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Project } from 'src/app/admin/interfaces/project';
+import { ImageService } from 'src/app/admin/service/image.service';
 
 @Component({
   selector: 'app-create-project',
@@ -21,6 +22,8 @@ export class CreateProjectComponent {
   private sub : Subscription = new Subscription();
   userId!: string;
   file: File | null = null;
+  isImageSaved: boolean = false;
+  cardImageBase64: string = '';
 
   constructor(
     private fb : FormBuilder, 
@@ -29,7 +32,8 @@ export class CreateProjectComponent {
     private dialog : MatDialog,
     private router : Router,
     private activatedRoute: ActivatedRoute,
-    private host: ElementRef<HTMLInputElement>) {
+    private host: ElementRef<HTMLInputElement>,
+    private imgService: ImageService) {
   }
 
   ngOnInit(): void {
@@ -51,17 +55,30 @@ export class CreateProjectComponent {
     let description = this.projectForm.get('description')!.value; 
     let img = this.projectImg!; 
 
+    let fd = new FormData();
+    
+    fd.append('file', img.file);
+    fd.append('ownerId', this.userId);
+    fd.append('url', JSON.stringify(img.url)); 
+    
     let newProject: Project = {
       name : projectName,
       description : description,
       userId : this.userId,
-      img : img
+      image : ""
     };
 
     this.sub.add(
       this.project.create(newProject).subscribe({
         next: (resp: any) => {
-          const queryParams: Params = {id:resp.data.project.id};
+          this.imgService.updateImg(resp.data.project.id, fd).subscribe({
+            next: (resp: any) => {},
+            error: (err) => {
+              console.log(err); 
+              swal.fire("Error", "Error while saving the project img", "error");
+              this.dialog.closeAll();
+            }
+          });
           this.dialog.closeAll(); 
           this.router.navigate([`admin/project/${resp.data.project.id}`])
         },
@@ -79,17 +96,21 @@ export class CreateProjectComponent {
     
   }
 
-  onFileSelected(event: any){
-    let file: File = event.target.files[0]; 
-    const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
 
-    let img: Img = {
-      "file": file,
-      "url": url
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+  
+    reader.onload = () => {
+      this.cardImageBase64 = reader.result as string;
+      this.isImageSaved = true;
+      let img: Img = {
+        "file": file,
+        "url": this.sanitizer.bypassSecurityTrustUrl(this.cardImageBase64)
+      };
+      this.projectImg = img;
     };
-
-    
-  this.projectImg = img; 
   }
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
@@ -99,5 +120,4 @@ export class CreateProjectComponent {
 
 
 }
-
 

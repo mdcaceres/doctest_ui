@@ -7,6 +7,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateProjectComponent } from '../project/create-project/create-project.component';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { Project } from '../../interfaces/project';
+import { ProjectService } from '../../service/project.service';
 
 @Component({
   selector: 'app-navigation',
@@ -19,6 +21,8 @@ export class NavigationComponent implements OnInit{
   hidden = false;
   userName!: string;
   userId! : string; 
+  project!: Project;
+  imgSrc!: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,14 +32,20 @@ export class NavigationComponent implements OnInit{
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private messaging : MessagingService,
     private dialog: MatDialog,
     private messagingService:MessagingService,
-    private angularFireMessaging:AngularFireMessaging) {
+    private angularFireMessaging:AngularFireMessaging,
+    private projectService: ProjectService) {
       
     }
 
   ngOnInit(): void {
+
+    this.projectService.currentProject.subscribe(project => {
+      this.project = project as Project;
+      this.imgSrc = "http://localhost:8080/img/" + this.project.image!.replace('uploads/', '')!;
+    });
+
     this.messagingService.requestPermission(this.userId); 
     this.notifications = []; 
 
@@ -66,5 +76,11 @@ export class NavigationComponent implements OnInit{
 
   openDialog() {
     this.dialog.open(CreateProjectComponent);
+  }
+
+  addProject(project: any) {
+    console.log("cambio projecto");
+    this.project = project;
+    this.imgSrc = "localhost:8080/" + this.project.image!.replace('uploads/', '');
   }
 }

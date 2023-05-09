@@ -1,8 +1,9 @@
 import { Img } from "./img";
 
 export interface Project {
-    name : string, 
-    description : string, 
-    userId : string, 
-    img: Img
+    id? : string 
+    name? : string, 
+    description? : string, 
+    userId? : string
+    image? : string
 }

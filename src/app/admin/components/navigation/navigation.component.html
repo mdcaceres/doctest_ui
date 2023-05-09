@@ -1,22 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"
-      (click)="drawer.toggle()">
-    <mat-toolbar class="toolbar">
-    </mat-toolbar>
-    <mat-nav-list>
-      <div>
-        <a mat-list-item href="#">Suits</a>
-        <a mat-list-item href="#">Test Cases</a>
-        <a mat-list-item href="#">Bugs</a>
-        <a mat-list-item href="#">Executions</a>
-      </div>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
+<div class="main-container">
+  <mat-toolbar color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -25,13 +8,16 @@
         *ngIf="isHandset$ | async">
           <mat-icon aria-hidden="false" aria-label="menu icon" fontIcon="menu"></mat-icon>
       </button>
+    
+    <!--menu -->
+      <div class="menu-container">
 
-<!--menu -->
-      <div>
+        <img src='../../../../assets/logo.png' width="50px" alt="Selected Image" class="selected-image">
+
         <button mat-button  routerLink="./home">
           Home
         </button>
-
+    
         <button mat-button [matMenuTriggerFor]="aboveMenu">
           Projects
         </button>
@@ -40,7 +26,7 @@
           <button mat-menu-item routerLink="./projects">View all</button>
         </mat-menu>
         <!-- [routerLink]="[{ outlets: { content: ['/projects'] } }]"-->
-  
+    
         <button mat-button [matMenuTriggerFor]="belowMenu">
           Teamspace
         </button>
@@ -81,11 +67,42 @@
           </button>
         </mat-menu>
       </div>
-      
+  </mat-toolbar>
 
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <app-dashboard></app-dashboard>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <div class="navigation-component-container">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #drawer class="sidenav" fixedInViewport
+          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'"
+          [opened]="(isHandset$ | async) === false"
+          (click)="drawer.toggle()">
 
+
+
+        <mat-toolbar class="toolbar">
+          <div class="project-image-container">
+            <img mat-card-image src={{imgSrc}} alt="project image" class="project-image">
+          </div>
+          <span class="toolbar-text">
+            {{project.name}}
+          </span>
+        </mat-toolbar>
+
+        <mat-nav-list>
+          <div>
+            <a mat-list-item href="#">Suits</a>
+            <a mat-list-item href="#">Test Cases</a>
+            <a mat-list-item href="#">Bugs</a>
+            <a mat-list-item href="#">Executions</a>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <!-- Add Content Here -->
+        <div class="grid-container">
+          <router-outlet (projectChanged)="addProject($event)"></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

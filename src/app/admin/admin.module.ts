@@ -29,6 +29,9 @@ import { MessagingService } from '../service/messaging.service';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { UserNamePipe } from './pipes/username';
+import { CreateTestComponent } from './components/test/create-test/create-test.component';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { UserNamePipe } from './pipes/username';
     HomeComponent,
     CreateProjectComponent,
     ProjectInvitationComponent,
-    UserNamePipe
+    UserNamePipe,
+    CreateTestComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,8 @@ import { UserNamePipe } from './pipes/username';
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [
     ProjectService,

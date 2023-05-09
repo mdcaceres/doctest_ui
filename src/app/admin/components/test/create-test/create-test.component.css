@@ -1,0 +1,71 @@
+.full {
+    width: 100%;
+}
+
+.big {
+    width: 70%;
+}
+
+.mid {
+    width: 50%;
+}
+
+.small {
+    width: 25%;
+}
+
+.swap-container {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.steps-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.icon-container {
+    display: flex;
+    align-self: center;
+    margin-right: 40px;
+}
+
+.mat-mdc-fab.mat-accent, .mat-mdc-mini-fab.mat-accent {
+    --mdc-fab-container-color: ;
+    --mat-mdc-fab-color: ;
+}
+
+.remove-container {
+    width: 70px;
+}
+
