@@ -1,0 +1,26 @@
+<div mat-dialog-content>
+  <div class="create-container">
+    <div class="create-header">
+        <h3>Create new Suite</h3>
+    </div>
+            <form [formGroup]="testSuiteForm" class="form-container">
+                <div class="fields-container">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Suite name</mat-label>
+                        <input matInput placeholder="UserSuite" formControlName="name" required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Example project that we are going to test" formControlName="description" required></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="big">
+                        <mat-label>Target</mat-label>
+                        <input formControlName="target" type="text" matInput placeholder="Enter the target of the test suite">
+                      </mat-form-field>
+                </div>
+                <button type="submit" mat-raised-button color="warn" class="create-button" (click)="onSubmit()">create</button>
+            </form>
+</div>
+</div>

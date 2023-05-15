@@ -25,6 +25,45 @@
                         <textarea matInput placeholder="Example project that we are going to test" formControlName="description" required></textarea>
                         <mat-error *ngIf="projectForm.value.description!.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Client</mat-label>
+                        <mat-select formControlName="client" name="client">
+                            <mat-option *ngFor="let c of clients" [value]="c.id">
+                            {{c.name}}
+                            </mat-option>
+                            <mat-option (click)="openClientDialog()">
+                                <mat-icon>add</mat-icon>
+                                add new client
+                            </mat-option>
+                         </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="example-form-field">
+                        <mat-label>Enter a start and end date</mat-label>
+                        <mat-date-range-input [rangePicker]="rangePicker">
+                          <input matStartDate placeholder="Start date" formControlName="start">
+                          <input matEndDate placeholder="End date" formControlName="end">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #rangePicker>
+                          <mat-date-range-picker-actions>
+                            <button mat-button matDateRangePickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                          </mat-date-range-picker-actions>
+                        </mat-date-range-picker>
+                      </mat-form-field>
+
+                      <div class="chips">
+                        <mat-chip-listbox aria-label="Status selection" formControlName="status">
+                            <mat-chip-option selected>Not Started</mat-chip-option>
+                            <mat-chip-option>In Progress</mat-chip-option>
+                            <mat-chip-option>On Hold</mat-chip-option>
+                            <mat-chip-option color="accent">Completed</mat-chip-option>
+                            <mat-chip-option color="warn">Cancelled</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
                 </div>
                 <button type="submit" mat-raised-button color="warn" class="create-button">create</button>
             </form>

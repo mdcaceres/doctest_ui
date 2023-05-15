@@ -1,0 +1,13 @@
+.create-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    padding-top: 5%;
+}
+
+.fields-container {
+    display: flex;
+    flex-direction: column;
+}

@@ -31,8 +31,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { UserNamePipe } from './pipes/username';
 import { CreateTestComponent } from './components/test/create-test/create-test.component';
 import {MatTableModule} from '@angular/material/table';
-
-
+import { QuillModule } from 'ngx-quill';
+import { QuillMaterialComponent } from './components/quill/quill-material/quill-material.component';
+import { CreateSuiteComponent } from './components/suite/create/create-suite/create-suite.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { CreateClientComponent } from './components/client/components/create-client/create-client.component';
 
 @NgModule({
   declarations: [
@@ -45,16 +51,22 @@ import {MatTableModule} from '@angular/material/table';
     CreateProjectComponent,
     ProjectInvitationComponent,
     UserNamePipe,
-    CreateTestComponent
+    CreateTestComponent,
+    QuillMaterialComponent,
+    CreateSuiteComponent,
+    CreateClientComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatGridListModule,
+    MatDatepickerModule,
     MatCardModule,
     MatIconModule,
     MatMenuModule,
+    MatSnackBarModule,
     MatFormFieldModule,
+    MatNativeDateModule,
     MatCardModule,
     MatIconModule,
     MatInputModule,
@@ -62,12 +74,14 @@ import {MatTableModule} from '@angular/material/table';
     MatOptionModule,
     MatSelectModule,
     MatListModule,
+    MatChipsModule,
     MatDividerModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    QuillModule.forRoot()
   ],
   providers: [
     ProjectService,

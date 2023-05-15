@@ -43,7 +43,7 @@ export class NavigationComponent implements OnInit{
 
     this.projectService.currentProject.subscribe(project => {
       this.project = project as Project;
-      this.imgSrc = "http://localhost:8080/img/" + this.project.image!.replace('uploads/', '')!;
+      this.imgSrc = this.imgSrc != null ? "http://localhost:8080/img/" + this.project.image!.replace('uploads/', '')! : "";
     });
 
     this.messagingService.requestPermission(this.userId); 
@@ -83,4 +83,5 @@ export class NavigationComponent implements OnInit{
     this.project = project;
     this.imgSrc = "localhost:8080/" + this.project.image!.replace('uploads/', '');
   }
+
 }

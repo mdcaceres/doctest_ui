@@ -11,13 +11,12 @@
     
     <!--menu -->
       <div class="menu-container">
-
         <img src='../../../../assets/logo.png' width="50px" alt="logo Image" class="logo-image">
-
+        
         <button mat-button  routerLink="./home">
           Home
         </button>
-    
+  
         <button mat-button [matMenuTriggerFor]="aboveMenu">
           Projects
         </button>
@@ -25,7 +24,6 @@
           <button mat-raised-button color="warn" (click)="openDialog()">New</button>
           <button mat-menu-item routerLink="./projects">View all</button>
         </mat-menu>
-        <!-- [routerLink]="[{ outlets: { content: ['/projects'] } }]"-->
     
         <button mat-button [matMenuTriggerFor]="belowMenu">
           Teamspace
@@ -34,10 +32,6 @@
           <button mat-menu-item>Create new post</button>
           <button mat-menu-item routerLink="./teamspace">Go to team space</button>
         </mat-menu>
-        <button mat-button [matMenuTriggerFor]="belowMenu" routerLink="./bugs">
-         <!--<mat-icon aria-hidden="false" aria-label="notifications icon" fontIcon="bug_report"></mat-icon> -->
-         Bugs
-        </button>
         <button mat-button [matMenuTriggerFor]="belowMenu" routerLink="./reports">
           Reports
         </button>
@@ -76,14 +70,11 @@
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="(isHandset$ | async) === false"
           (click)="drawer.toggle()">
-
-
-
-        <mat-toolbar class="toolbar">
+        <mat-toolbar class="toolbar"    *ngIf="project.id!=null">
           <div class="project-image-container">
             <img mat-card-image src={{imgSrc}} alt="project image" class="project-image">
           </div>
-          <span class="toolbar-text">
+          <span class="toolbar-text"    *ngIf="project.id!=null">
             {{project.name}}
           </span>
         </mat-toolbar>

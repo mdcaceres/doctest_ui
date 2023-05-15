@@ -28,6 +28,8 @@
     flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .form-row {
@@ -43,6 +45,7 @@
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+    
 }
 
 .steps-row {
@@ -69,3 +72,60 @@
     width: 70px;
 }
 
+.test-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actions{ 
+    display: flex;
+    flex-direction: row;
+}
+
+.attachments-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .added-attachments {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .attachment {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .attachment mat-icon {
+    font-size: 18px;
+  }
+  
+  .attachment span {
+    font-size: 14px;
+  }
+
+  
+  .attachments-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .chips{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }

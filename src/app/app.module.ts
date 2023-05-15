@@ -16,7 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
-import { QuillModule } from 'ngx-quill';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
@@ -47,7 +46,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     MatMenuModule,
     MatBadgeModule,
-    QuillModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule

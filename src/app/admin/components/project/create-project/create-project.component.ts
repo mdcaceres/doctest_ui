@@ -9,6 +9,8 @@ import swal  from 'sweetalert2';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Project } from 'src/app/admin/interfaces/project';
 import { ImageService } from 'src/app/admin/service/image.service';
+import { Client } from 'src/app/admin/interfaces/client';
+import { CreateClientComponent } from '../../client/components/create-client/create-client.component';
 
 @Component({
   selector: 'app-create-project',
@@ -24,6 +26,7 @@ export class CreateProjectComponent {
   file: File | null = null;
   isImageSaved: boolean = false;
   cardImageBase64: string = '';
+  clients: Client[] = [];
 
   constructor(
     private fb : FormBuilder, 
@@ -46,6 +49,10 @@ export class CreateProjectComponent {
       Validators.maxLength(25)
       ],
       description : ['',],
+      start: ['',],
+      end: ['',],
+      client: ['',],
+      status: [''],
       owner : [{value: this.userName, disabled: true}]
     });
   }
@@ -116,6 +123,24 @@ export class CreateProjectComponent {
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
     this.file = file;
+  }
+
+  openClientDialog() {
+    console.log("open client dialog");
+    this.dialog.open(CreateClientComponent, {
+      data: {userId: this.userId}
+    });
+    /*this.dialog.afterAllClosed.subscribe({
+      next: (resp) => {
+        this.clientService.GetAll(this.userId!).subscribe({
+          next: (resp:any) => {
+            this.clients = resp.data.clients as Client[];
+          },
+          error: (err) => {}
+        })
+      },
+      error: (err) => {},
+    });*/
   }
 
 

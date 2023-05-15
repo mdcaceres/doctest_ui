@@ -1,9 +1,13 @@
 
 <form [formGroup]="testCaseForm" class="form-container">
-    <div>
-        <h3>Test Case</h3>
+    <div class="test-header">
+        <h3>Test Case</h3> 
+        <span>
+            Author:
+            <b>@{{authorName}}</b>
+            <!--@{{project.name}}-->
+        </span>
     </div>
-
     <div class="form-row">
         <mat-form-field appearance="fill" class="big">
             <mat-label>Title</mat-label>
@@ -27,8 +31,7 @@
                 <mat-option *ngFor="let s of suites" [value]="s.id">
                 {{s.name}}
                 </mat-option>
-                <mat-option>
-                    
+                <mat-option (click)="openSuiteDialog()">
                     <mat-icon>add</mat-icon>
                     add new suite
                 </mat-option>
@@ -38,7 +41,7 @@
         <mat-form-field appearance="fill" class="small">
             <mat-label>Priority</mat-label>
             <mat-select formControlName="priority" name="priority">
-                <mat-option *ngFor="let p of priorities" [value]="p.id">
+                <mat-option *ngFor="let p of priorities" [value]="p.name">
                 {{p.name}}
                 </mat-option>
              </mat-select>
@@ -54,7 +57,18 @@
         <mat-label>Duration</mat-label>
         <input type="time" matInput placeholder="00:00" formControlName="duration"/>
     </mat-form-field>
+    <div class="chips">
+        <mat-chip-listbox aria-label="Status selection" formControlName="status">
+            <mat-chip-option selected>New</mat-chip-option>
+            <mat-chip-option>In Development</mat-chip-option>
+            <mat-chip-option>In review</mat-chip-option>
+            <mat-chip-option color="accent">Approved</mat-chip-option>
+            <mat-chip-option color="warn">Failed</mat-chip-option>
+            <mat-chip-option color="accent">Passed</mat-chip-option>
+        </mat-chip-listbox>
+    </div>
 
+    <mat-divider></mat-divider>
     <div class="steps-container">
         <div>
             <h3>Steps</h3>
@@ -63,17 +77,17 @@
         <div appearance="fill" formArrayName="steps" *ngFor="let step of steps.controls; let i = index">
             <div [formGroupName]="i" class="steps-row">
                 <mat-form-field appearance="fill" class="big">
-                    <input matInput type="text" placeholder="description">
+                    <input matInput type="text" placeholder="description" formControlName="description">
                 </mat-form-field>
                 <div class="swap-container">
                     <mat-icon>swap_horiz</mat-icon>
                 </div>
                 <mat-form-field appearance="fill" class="big">
-                    <input matInput type="text" placeholder="result">
+                    <input matInput type="text" placeholder="result" formControlName="result">
                 </mat-form-field>
                 <div class="remove-container">
-                    <button class="remove-icon" *ngIf="i != 0" mat-icon-button (click)="removeStep(i)">
-                        <mat-icon color="warm">remove</mat-icon>
+                    <button mat-icon-button class="remove-icon" *ngIf="i != 0" mat-icon-button (click)="removeStep(i)">
+                        <mat-icon color="warn">remove</mat-icon>
                     </button>
                 </div>
             </div>    
@@ -85,7 +99,32 @@
             </button>
         </div>
     </div>
+    <mat-divider></mat-divider>
+
+    <div appearance="fill" class="attachments-container">
+        <div class="attachments-header">
+            <div>
+                <h3>Attachments</h3>
+            </div>
+            <input id="photoInput" #csvInput hidden="true" type="file" (change)="onFileSelected($event)">
+            <button mat-icon-button (click)="csvInput.click()">
+                <mat-icon>attach_file_add</mat-icon>
+            </button>
+        </div>
+        <div class="added-attachments" *ngIf="attachments.length!=0">
+            <div class="attchment" *ngFor="let a of attachments; let i = index">
+                <mat-icon>{{getIcon(a.type)}}</mat-icon>
+                <span>{{a.name}}</span>
+                <button mat-icon-button (click)="remove(i)"><mat-icon color="warn">close</mat-icon></button>
+            </div>
+        </div>
+    </div>
     
+    <mat-divider></mat-divider>
+    
+    <div class="actions">
+        <button type="submit" mat-raised-button color="primary" class="create-button" (click)="onSubmit()">save and create new</button>
+    </div>
 
 </form>
 

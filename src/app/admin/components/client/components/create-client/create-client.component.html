@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+    <div class="create-container">
+      <div class="create-header">
+          <h3>Create new Client</h3>
+      </div>
+      <form [formGroup]="clientForm" class="form-container">
+        <div class="fields-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="John Doe" formControlName="name" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="john.doe@example.com" formControlName="email" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Enter phone number" formControlName="phone" required>
+          </mat-form-field>
+        </div>
+        <button type="submit" mat-raised-button color="warn" class="create-button" (click)="onSubmit()">Create</button>
+      </form>
+    </div>
+  </div>
+  
