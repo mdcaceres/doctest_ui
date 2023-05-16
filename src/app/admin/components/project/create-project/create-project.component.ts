@@ -11,6 +11,7 @@ import { Project } from 'src/app/admin/interfaces/project';
 import { ImageService } from 'src/app/admin/service/image.service';
 import { Client } from 'src/app/admin/interfaces/client';
 import { CreateClientComponent } from '../../client/components/create-client/create-client.component';
+import { ClientService } from 'src/app/admin/service/client.service';
 
 @Component({
   selector: 'app-create-project',
@@ -36,7 +37,8 @@ export class CreateProjectComponent {
     private router : Router,
     private activatedRoute: ActivatedRoute,
     private host: ElementRef<HTMLInputElement>,
-    private imgService: ImageService) {
+    private imgService: ImageService,
+    private clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -130,9 +132,9 @@ export class CreateProjectComponent {
     this.dialog.open(CreateClientComponent, {
       data: {userId: this.userId}
     });
-    /*this.dialog.afterAllClosed.subscribe({
+    this.dialog.afterAllClosed.subscribe({
       next: (resp) => {
-        this.clientService.GetAll(this.userId!).subscribe({
+        this.clientService.getAll(this.userId!).subscribe({
           next: (resp:any) => {
             this.clients = resp.data.clients as Client[];
           },
@@ -140,7 +142,7 @@ export class CreateProjectComponent {
         })
       },
       error: (err) => {},
-    });*/
+    });
   }
 
 
