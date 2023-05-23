@@ -19,6 +19,10 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/user/id/${id}`, {withCredentials: true})
   }
 
+  getAllByProject(id: string): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/project/${id}`, {withCredentials: true})
+  }
+
   updateToken(id: string, token: string): Observable<any> {
     let fcmToken = {v: token}
     return this.http.put(`${environment.apiUrl}/user/${id}`, fcmToken, {withCredentials: true})

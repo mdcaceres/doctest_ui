@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BugDashboardComponent } from './bug-dashboard.component';
+import { CreateBugComponent } from './create-bug.component';
 
-describe('BugDashboardComponent', () => {
-  let component: BugDashboardComponent;
-  let fixture: ComponentFixture<BugDashboardComponent>;
+describe('CreateBugComponent', () => {
+  let component: CreateBugComponent;
+  let fixture: ComponentFixture<CreateBugComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BugDashboardComponent ]
+      declarations: [ CreateBugComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BugDashboardComponent);
+    fixture = TestBed.createComponent(CreateBugComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

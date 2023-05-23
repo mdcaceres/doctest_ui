@@ -13,7 +13,7 @@
       <div class="menu-container">
         <img src='../../../../assets/logo.png' width="50px" alt="logo Image" class="logo-image">
         
-        <button mat-button  routerLink="./home">
+        <button mat-button routerLink="./home">
           Home
         </button>
   
@@ -68,8 +68,7 @@
       <mat-sidenav #drawer class="sidenav" fixedInViewport
           [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
-          [opened]="(isHandset$ | async) === false"
-          (click)="drawer.toggle()">
+          [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="toolbar"    *ngIf="project.id!=null">
           <div class="project-image-container">
             <img mat-card-image src={{imgSrc}} alt="project image" class="project-image">
@@ -81,10 +80,10 @@
 
         <mat-nav-list>
           <div>
-            <a mat-list-item href="#">Suits</a>
-            <a mat-list-item href="#">Test Cases</a>
-            <a mat-list-item href="#">Bugs</a>
-            <a mat-list-item href="#">Executions</a>
+            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/suites'">Suites</a>
+            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/tests'">Test Cases</a>
+            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/bugs'">Bugs</a>
+            <!--<a mat-list-item href="#">Executions</a>-->
           </div>
         </mat-nav-list>
       </mat-sidenav>

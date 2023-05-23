@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProjectsListComponent } from './components/project/projects-list/projects-list.component';
 import { TeamspaceDashboardComponent } from './components/teamspace/teamspace-dashboard/teamspace-dashboard.component';
-import { BugDashboardComponent } from './components/bug/bug-dashboard/bug-dashboard.component';
 import { ProjectDashboardComponent } from './components/project/project-dashboard/project-dashboard.component';
 import { ReportsDashboardComponent } from './components/reports/reports-dashboard/reports-dashboard.component';
 import { HomeComponent } from './components/home/home/home.component';
@@ -39,12 +38,17 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CreateClientComponent } from './components/client/components/create-client/create-client.component';
+import { SuiteListComponent } from './components/suite/components/suite-list/suite-list.component';
+import { TestListComponent } from './components/test/components/test-list/test-list.component';
+import { CreateBugComponent } from './components/bug/components/create-bug/create-bug.component';
+import { BugListComponent } from './components/bug/components/bug-list/bug-list.component';
+import { MatSortModule } from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     ProjectsListComponent,
     TeamspaceDashboardComponent,
-    BugDashboardComponent,
     ProjectDashboardComponent,
     ReportsDashboardComponent,
     HomeComponent,
@@ -54,7 +58,11 @@ import { CreateClientComponent } from './components/client/components/create-cli
     CreateTestComponent,
     QuillMaterialComponent,
     CreateSuiteComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    SuiteListComponent,
+    TestListComponent,
+    CreateBugComponent,
+    BugListComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +77,7 @@ import { CreateClientComponent } from './components/client/components/create-cli
     MatNativeDateModule,
     MatCardModule,
     MatIconModule,
+    MatPaginatorModule,
     MatInputModule,
     MatButtonModule,
     MatOptionModule,
@@ -80,6 +89,7 @@ import { CreateClientComponent } from './components/client/components/create-cli
     FormsModule,
     MatDialogModule,
     HttpClientModule,
+    MatSortModule,
     MatTableModule,
     QuillModule.forRoot()
   ],

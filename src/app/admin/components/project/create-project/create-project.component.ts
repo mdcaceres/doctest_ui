@@ -57,12 +57,22 @@ export class CreateProjectComponent {
       status: [''],
       owner : [{value: this.userName, disabled: true}]
     });
+
+    this.clientService.getAll(this.userId).subscribe({
+      next: (resp : any) => {
+        this.clients = resp.data.clients!
+      }
+    })
   }
 
   create(form : FormGroup) {
     let projectName = this.projectForm.get('name')!.value; 
-    let description = this.projectForm.get('description')!.value; 
+    let description = this.projectForm.get('description')!.value;
+    let clientId = this.projectForm.get('client')!.value;
+    let start : Date = this.projectForm.get('start')!.value;
+    let end : Date = this.projectForm.get('end')!.value;
     let img = this.projectImg!; 
+    let status = this.projectForm.get('status')!.value;
 
     let fd = new FormData();
     
@@ -74,7 +84,11 @@ export class CreateProjectComponent {
       name : projectName,
       description : description,
       userId : this.userId,
-      image : ""
+      clientId: clientId,
+      end: end.toISOString(),
+      start: start.toISOString(),
+      image : "",
+      status: status
     };
 
     this.sub.add(
@@ -132,6 +146,7 @@ export class CreateProjectComponent {
     this.dialog.open(CreateClientComponent, {
       data: {userId: this.userId}
     });
+
     this.dialog.afterAllClosed.subscribe({
       next: (resp) => {
         this.clientService.getAll(this.userId!).subscribe({

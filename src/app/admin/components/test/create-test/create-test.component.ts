@@ -42,7 +42,7 @@ export class CreateTestComponent implements OnInit {
 
   ngOnInit() {
     this.projectId = this.route.snapshot.params['id'];
-    this.suiteService.GetAll(this.projectId!).subscribe({
+    this.suiteService.getAll(this.projectId!).subscribe({
       next: (resp:any) => {
         this.suites = resp.data.suites as Suite[];
       },
@@ -149,7 +149,7 @@ export class CreateTestComponent implements OnInit {
 
     this.dialog.afterAllClosed.subscribe({
       next: (resp) => {
-        this.suiteService.GetAll(this.projectId!).subscribe({
+        this.suiteService.getAll(this.projectId!).subscribe({
           next: (resp:any) => {
             this.suites = resp.data.suites as Suite[];
           },

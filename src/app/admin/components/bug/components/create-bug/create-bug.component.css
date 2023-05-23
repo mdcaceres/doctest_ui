@@ -1,0 +1,82 @@
+.create-container {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    width: 100%;
+}
+
+.fields-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.field {
+    flex-grow: 1;
+    padding: 5px;
+} 
+
+.noGrow {
+  flex-grow: 0;
+  padding: 5px;
+} 
+
+.create-button {
+    flex-grow: 0;
+    width: 100px;
+}
+
+.create-header {
+    padding: 5px;
+}
+
+.attachments-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .added-attachments {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .attachment {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .attachment mat-icon {
+    font-size: 18px;
+  }
+  
+  .attachment span {
+    font-size: 14px;
+  }
+
+  
+  .attachments-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .create-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

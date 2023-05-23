@@ -14,7 +14,8 @@ export class SuiteService {
     return this.http.post(`${environment.apiUrl}/project/${suite.project_id}/suite`,suite, {withCredentials: true});
   }
 
-  GetAll(id:string){
+  getAll(id:string){
     return this.http.get(`${environment.apiUrl}/project/${id}/suites`, {withCredentials: true});
   }
+
 }

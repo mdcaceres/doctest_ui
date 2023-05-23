@@ -50,4 +50,8 @@ export class ProjectDashboardComponent implements OnInit {
     this.router.navigate([`/admin/project/${this.projectId}/new_test`]);
   }
 
+  createBug() {
+    this.router.navigate([`/admin/project/${this.projectId}/new_bug`]);
+  }
+
 }

@@ -14,4 +14,8 @@ export class CaseService {
     return this.http.post<TestCase>(`${environment.apiUrl}/project/${testCase.project_id}/test`, testCase, { withCredentials: true })
   }
 
+  getAll(id:string) {
+    return this.http.get<TestCase[]>(`${environment.apiUrl}/project/${id}/tests`, {withCredentials: true})
+  }
+
 }

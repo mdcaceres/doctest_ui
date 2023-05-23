@@ -1,0 +1,113 @@
+<div class="create-container">
+  <form [formGroup]="bugForm" class="fields-container">
+    <div class="create-header">
+      <h3>Create new Bug</h3>
+        <span>
+            Author:
+            <b>@{{authorName}}</b>
+        </span>
+    </div>
+    <div class="row" >
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="BugsBonny"
+          formControlName="name"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" name="type">
+          <mat-option *ngFor="let t of types" [value]="t.name">
+            {{ t.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      
+
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="...."
+          formControlName="description"
+          required
+        ></textarea>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Priotity</mat-label>
+          <mat-select formControlName="priority" name="priority">
+            <mat-option *ngFor="let p of priorities" [value]="p.name">
+              {{ p.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="field" >
+          <mat-label>Severity</mat-label>
+          <mat-select formControlName="severity" name="severity">
+            <mat-option *ngFor="let s of severities" [value]="s.name">
+              {{ s.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="chips">
+        <mat-chip-listbox aria-label="Status selection" formControlName="status">
+          <mat-chip-option *ngFor="let s of statuses">{{s.name}}</mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Assinged</mat-label>
+          <mat-select formControlName="assigned" name="assigned">
+            <mat-option *ngFor="let u of users" [value]="u.id">
+              {{u.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Due date</mat-label>
+          <input matInput [matDatepicker]="picker" [min]="start" [max]="projectDue" formControlName="due">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+    <div appearance="fill" class="attachments-container">
+        <div class="attachments-header">
+            <div>
+                <h3>Attachments</h3>
+            </div>
+            <input id="photoInput" #csvInput hidden="true" type="file" (change)="onFileSelected($event)">
+            <button mat-icon-button (click)="csvInput.click()">
+                <mat-icon>attach_file_add</mat-icon>
+            </button>
+        </div>
+        <div class="added-attachments" *ngIf="attachments.length!=0">
+            <div class="attchment" *ngFor="let a of attachments; let i = index">
+                <mat-icon>{{getIcon(a.type)}}</mat-icon>
+                <span>{{a.name}}</span>
+                <button mat-icon-button (click)="remove(i)"><mat-icon color="warn">close</mat-icon></button>
+            </div>
+        </div>
+    </div>
+    
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="warn" (click)="onCreate(bugForm)" class="create-button">
+      create
+    </button>
+  </form>
+</div>
+
+

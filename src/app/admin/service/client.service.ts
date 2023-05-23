@@ -10,10 +10,10 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
   create(client: any, userId: string) {
-    return this.http.post(`${environment}/clients/${userId}`, client, {withCredentials: true});
+    return this.http.post(`${environment.apiUrl}/clients/${userId}`, client, {withCredentials: true});
   }
 
   getAll(userId: string) {
-    return this.http.get(`${environment}/clients/${userId}`, {withCredentials: true});
+    return this.http.get(`${environment.apiUrl}/clients/${userId}`, {withCredentials: true});
   }
 }

@@ -17,6 +17,10 @@ export class ProjectService {
     this.project.next(project)
   }
 
+  getCurrent() {
+    return this.project.getValue();
+  }
+
   create(project:Project) {
     return this.http.post<Project>(`${environment.apiUrl}/projects`, project, {withCredentials: true})
   }

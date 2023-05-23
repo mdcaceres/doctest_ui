@@ -12,4 +12,8 @@ export class FilesService {
   add(testId: string, files:FormData){
     return this.http.post<any>(`${environment.apiUrl}/test/${testId}/files`, files, {withCredentials: true});
   }
+
+  addToBug(testId: string, files:FormData){
+    return this.http.post<any>(`${environment.apiUrl}/bug/${testId}/files`, files, {withCredentials: true});
+  }
 }

@@ -11,6 +11,7 @@ import { MessagingService } from 'src/app/service/messaging.service';
 import swal from 'sweetalert2';
 import { ProjectDashboardComponent } from '../project-dashboard/project-dashboard.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-project-invitation',
@@ -34,7 +35,8 @@ export class ProjectInvitationComponent implements OnInit, OnDestroy {
     private invitation: InvitationService,
     private messaging: MessagingService,
     @Inject(MAT_DIALOG_DATA) private data: {route: ActivatedRoute},
-    public dialogRef: MatDialogRef<ProjectDashboardComponent>) {
+    public dialogRef: MatDialogRef<ProjectDashboardComponent>,
+    private MatSnackbar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -67,20 +69,17 @@ export class ProjectInvitationComponent implements OnInit, OnDestroy {
     }
 
     this.sub.add(
-      this.invitation.send(invitation).subscribe(() => {
+      this.invitation.send(invitation).subscribe({
         next: () => {
+          this.MatSnackbar.open('Invitation sent', 'Close', {
+            duration: 3000
+          });
+
           this.dialogRef.close();
-          swal.fire({
-            title: 'Invitation sent',
-            text: 'Invitation sent successfully',
-            icon: 'success'
-          })
-        };
+        },
         error: (e:any) => {
-          swal.fire({
-            title: 'Error',
-            text: 'Invitation could not be sent',
-            icon: 'error'
+          this.MatSnackbar.open('Invitation failed', 'Close', {
+            duration: 3000
           });
         }
       })

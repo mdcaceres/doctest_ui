@@ -30,7 +30,8 @@ export class CreateClientComponent {
     const client: Client = {
       name: this.clientForm.value.name,
       email: this.clientForm.value.email,
-      phone: this.clientForm.value.phone
+      phone: this.clientForm.value.phone,
+      userId: this.data.userId
     };
 
     // Send the client data to the server or perform desired actions
@@ -38,12 +39,12 @@ export class CreateClientComponent {
 
     this.clientService.create(client, this.data.userId).subscribe({
       next: data => {
-        this.dialog.closeAll();
+        //this.dialog.closeAll();
       },
       error: err => {
         console.log(err); 
         swal.fire("Error", "Error while saving the project", "error");
-        this.dialog.closeAll();
+        //this.dialog.closeAll();
       }
     })
 
