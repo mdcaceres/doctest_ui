@@ -52,7 +52,7 @@ export class QuillMaterialComponent implements OnInit, DoCheck, OnDestroy, Contr
   stateChanges = new Subject<void>();
 
   quill: any = Quill;
-  editor: any;
+  public editor: any;
   controlType = 'quill-material';
   errorState = false;
   ngControl: any;
@@ -64,7 +64,7 @@ export class QuillMaterialComponent implements OnInit, DoCheck, OnDestroy, Contr
   get value(): any {
     return this._value;
   }
-  set value(value) {
+  public set value(value) {
     this._value = value;
     this.editor.setContents(this._value);
     this.onChange(value);
@@ -129,7 +129,7 @@ export class QuillMaterialComponent implements OnInit, DoCheck, OnDestroy, Contr
     if (this.ngControl != null) { this.ngControl.valueAccessor = this; }
 
     const editorRef = this.container.nativeElement.querySelector('.editor');
-    this.editor = new Quill(editorRef, { theme: 'snow' });
+    this.editor = new Quill(editorRef, { theme: 'snow'});
     this.editor.on('text-change', () => {
       if (this.ngControl.touched) {
         this.onChange(this.getValue());

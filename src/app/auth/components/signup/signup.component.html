@@ -8,17 +8,17 @@
             <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)" class="form-container">
                 <div class="fields-container">
                     <mat-form-field appearance="fill">
-                        <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="youremail@example.com" formControlName="email" required>
+                        <mat-label>Enter your user name</mat-label>
+                        <input matInput type="text" placeholder="BugHunter" formControlName="userName" required>
                         <mat-error *ngIf="signupForm.value.email!.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
-                        <mat-label>Enter your user name</mat-label>
-                        <input matInput placeholder="BugHunter" formControlName="userName" required>
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput type="email" placeholder="youremail@example.com" formControlName="email" required>
                         <mat-error *ngIf="signupForm.value.email!.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
-        
+
                     <mat-form-field appearance="fill">
                       <mat-label>Enter your password</mat-label>
                       <input matInput type="password" formControlName="password" required>
@@ -26,7 +26,7 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Confirm your password</mat-label>
-                        <input matInput formControlName="confirm" required>
+                        <input matInput type="password" formControlName="confirm" required>
                       </mat-form-field>
                 </div>
 

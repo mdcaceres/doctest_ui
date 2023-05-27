@@ -11,4 +11,5 @@ export interface Bug {
     user_id?: number;
     assigned_id? : number;
     due?: string;
+    comments?: any[];
 }

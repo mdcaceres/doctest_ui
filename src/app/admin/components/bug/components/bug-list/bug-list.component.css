@@ -1,0 +1,51 @@
+.bugside{
+    width: 60%;
+    padding: 15px;
+    display: flex;
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.fields-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.field {
+    flex-grow: 1;
+    padding: 5px;
+} 
+
+.textarea {
+    flex-grow: 1;
+}
+
+.commentsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.li {
+    height: 100%;
+}
+
+.comment{
+    background-color: #303030;
+    margin-bottom: 15px;
+}
+
+.innerComment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}

@@ -44,6 +44,11 @@ import { CreateBugComponent } from './components/bug/components/create-bug/creat
 import { BugListComponent } from './components/bug/components/bug-list/bug-list.component';
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+
 
 @NgModule({
   declarations: [
@@ -55,6 +60,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CreateProjectComponent,
     ProjectInvitationComponent,
     UserNamePipe,
+    SafeHtmlPipe,
     CreateTestComponent,
     QuillMaterialComponent,
     CreateSuiteComponent,
@@ -62,7 +68,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SuiteListComponent,
     TestListComponent,
     CreateBugComponent,
-    BugListComponent
+    BugListComponent,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule,
@@ -74,8 +81,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatMenuModule,
     MatSnackBarModule,
     MatFormFieldModule,
+    MatProgressBarModule,
     MatNativeDateModule,
+    MatSidenavModule,
     MatCardModule,
+    MatToolbarModule,
     MatIconModule,
     MatPaginatorModule,
     MatInputModule,
