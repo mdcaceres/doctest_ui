@@ -48,7 +48,8 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
-
+import { TestExecutionComponent } from './components/execution/components/test-execution/test-execution.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     TestListComponent,
     CreateBugComponent,
     BugListComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    TestExecutionComponent
   ],
   imports: [
     CommonModule,
@@ -82,6 +84,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     MatSnackBarModule,
     MatFormFieldModule,
     MatProgressBarModule,
+    MatStepperModule,
     MatNativeDateModule,
     MatSidenavModule,
     MatCardModule,

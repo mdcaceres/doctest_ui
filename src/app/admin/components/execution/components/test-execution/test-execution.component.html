@@ -1,0 +1,80 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="form">
+      <mat-stepper lineal #stepper>
+        <form [formGroup]="form">
+          <mat-step [stepControl]="form" formArrayName="steps" *ngFor="let step of formSteps.controls; let i = index">
+            <!--title-->
+            <ng-template matStepLabel>Step {{step.get('number')!.value}}</ng-template>
+            <!--form inputs!!!-->
+            <div [formGroupName]="i" class="steps-container">
+              <input matInput hidden formControlName="number" name="number" [value]="step.get('number')">
+    
+                <div class="steps-container">
+                  <div appearance="fill">
+                    <div class="steps-row">
+                      <mat-form-field appearance="fill" class="field">
+                          <mat-label>Step</mat-label>
+                          <input matInput readonly="true" type="text" [value]="step.get('description')!.value" placeholder="description" formControlName="description">
+                      </mat-form-field>
+                      <div class="swap-container">
+                          <mat-icon>swap_horiz</mat-icon>
+                      </div>
+                      <mat-form-field appearance="fill" class="field">
+                          <mat-label>Expected</mat-label>
+                          <input matInput readonly="true" type="text" [value]="step.get('expected')!.value" placeholder="expected" formControlName="expected">
+                      </mat-form-field>
+                    </div>
+                  </div>    
+                </div>
+
+                <div class="chips">
+                  <mat-chip-listbox aria-label="Status selection" formControlName="status">
+                      <mat-chip-option [color]="getColor(s.name)"  *ngFor="let s of statuses">{{s.name}}</mat-chip-option>
+                  </mat-chip-listbox>
+                </div>
+    
+              <mat-divider></mat-divider>
+                <h3>Leave a comment</h3>
+                  <form [formGroup]="commentForm" class="commentsContainer">
+                    <mat-form-field appearance="fill" class="field">
+                      <textarea matInput class="textarea" formControlName="comment"></textarea>
+                    </mat-form-field>
+                  </form>
+
+
+            </div>
+
+              <!--next-->
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+            <div class="timer">
+              <mat-card-subtitle>
+                <mat-icon>timer</mat-icon> {{interval * 1000 | date:'mm:ss'}}
+              </mat-card-subtitle>
+            </div>
+          </mat-step>
+        </form>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+    
+      </mat-stepper>
+    </ng-container>
+  </mat-card-content>
+<!--   <mat-card-footer>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer> -->
+</mat-card>
+

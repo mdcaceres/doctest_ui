@@ -11,6 +11,7 @@ import { SuiteListComponent } from './components/suite/components/suite-list/sui
 import { TestListComponent } from './components/test/components/test-list/test-list.component';
 import { BugListComponent } from './components/bug/components/bug-list/bug-list.component';
 import { CreateBugComponent } from './components/bug/components/create-bug/create-bug.component';
+import { TestExecutionComponent } from './components/execution/components/test-execution/test-execution.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path:'project/:id/bugs', component: BugListComponent},
       {path:'project/:id/new_bug', component: CreateBugComponent},
       {path: 'projects', component: ProjectsListComponent},
+      {path: 'test/:id/execution', component: TestExecutionComponent},
     ]
   },
 

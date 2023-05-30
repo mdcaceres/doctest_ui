@@ -60,22 +60,22 @@
         </form>
       <mat-divider></mat-divider>
 
-      </mat-card-content>
-      <mat-card-footer>
+        </mat-card-content>
+        <mat-card-footer>
+          
         <mat-card>
           <mat-card-header>
                 <mat-card-title>Comments</mat-card-title>
           </mat-card-header>
           <mat-card-content>
                 <form [formGroup]="commentForm" class="commentsContainer">
-                  <mat-form-field #commentInput appearance="fill">
-                  <quill-material #quill formControlName="comment"></quill-material>
+                  <mat-form-field appearance="fill" class="field">
+                    <textarea matInput class="textarea" formControlName="comment"></textarea>
                   </mat-form-field>
-      
                   <button mat-raised-button #button color="primary" (click)="addComment(bugForm.value.comment!)">Add</button>
                 </form>
       
-                <mat-list>
+                <mat-list id="mat-list-comments">
                   <mat-list-item class="li" *ngFor="let comment of this.comments">
                     <mat-card class="comment">
                       <mat-card-header>

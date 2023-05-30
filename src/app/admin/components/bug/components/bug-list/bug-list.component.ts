@@ -150,8 +150,6 @@ export class BugListComponent {
           console.log(resp);
           this.comments.unshift(commentObj);
           this.commentForm.reset();
-          this.quill!.editor.setText(' ');
-          this.quill!.editor.setContents(' ');
         }
       });
   }

@@ -43,8 +43,8 @@ export class TestListComponent {
     );
   }
 
-  goToDashboard(id:string) {
-    this.router.navigate([`/admin/project/${id}`]);
+  goToExecute(id:string) {
+    this.router.navigate([`/admin/test/${id}/execution`]);
   }
 
   applyFilter(event: Event) {

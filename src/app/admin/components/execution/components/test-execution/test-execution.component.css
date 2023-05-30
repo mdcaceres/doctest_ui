@@ -1,0 +1,48 @@
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.steps-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.icon-container {
+    display: flex;
+    align-self: center;
+    margin-right: 40px;
+}
+
+.field {
+    flex-grow: 1;
+    padding: 5px;
+} 
+
+.commentsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.chips{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.timer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+}

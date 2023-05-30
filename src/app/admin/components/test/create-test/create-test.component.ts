@@ -142,7 +142,6 @@ export class CreateTestComponent implements OnInit {
   }
 
   openSuiteDialog() {
-    console.log("open suite dialog");
     this.dialog.open(CreateSuiteComponent, {
       data: {projectId : this.projectId, userId: this.authorId}
     });
