@@ -1,6 +1,6 @@
 <mat-card class="main-card">
   <mat-card-header>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar [mode]="isSaved ? 'determinate' : 'indeterminate'"></mat-progress-bar>
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngIf="form">
@@ -33,17 +33,17 @@
 
                 <div class="chips">
                   <mat-chip-listbox aria-label="Status selection" formControlName="status">
-                      <mat-chip-option [color]="getColor(s.name)"  *ngFor="let s of statuses">{{s.name}}</mat-chip-option>
+                      <mat-chip-option [color]="getColor(s.name)"  *ngFor="let s of stepStatuses">{{s.name}}</mat-chip-option>
                   </mat-chip-listbox>
                 </div>
     
               <mat-divider></mat-divider>
                 <h3>Leave a comment</h3>
-                  <form [formGroup]="commentForm" class="commentsContainer">
+                  <div class="commentsContainer">
                     <mat-form-field appearance="fill" class="field">
                       <textarea matInput class="textarea" formControlName="comment"></textarea>
                     </mat-form-field>
-                  </form>
+                  </div>
 
 
             </div>
@@ -63,10 +63,43 @@
 
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
+          <button mat-button color="primary" *ngIf="!isSaved"(click)="save(form)"><mat-icon>stop</mat-icon>End</button>
+          <div *ngIf="isSaved" class="done">
+            <h3>The execution was successfully saved!</h3>
+            <div class="timer">
+              <h4>
+                <mat-icon>timer</mat-icon>
+                Time taken:  {{interval * 1000 | date:'mm:ss'}}
+              </h4>
+            </div>
+
+            <div class="timer">
+              <h4>
+                <mat-icon>account_circle</mat-icon> {{testerId | userName | async}} run it!
+              </h4>
+            </div>
+
+            <div class="timer">
+              <h4>
+                <mat-icon>all_match</mat-icon> 
+                Execution Status : <mat-chip [color]="getColor(executionResult.status!)">{{executionResult.status!}}</mat-chip> 
+              </h4>
+            </div>
+
+              <div class="chart-container">
+                <canvas baseChart class="chart"
+                [data]="pieChartData"
+                [type]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"> 
+                </canvas>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="stepper.reset(); reset(form)">Reset</button>
           </div>
         </mat-step>
     

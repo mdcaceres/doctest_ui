@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
           localStorage.setItem('roles', JSON.stringify(Array.from(roles.entries())))
 
-          this.router.navigate(['./admin'])
+          this.router.navigate(['./admin/home'])
         },
         error: (err) => {
           console.log(err); 

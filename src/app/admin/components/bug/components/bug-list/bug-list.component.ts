@@ -128,6 +128,19 @@ export class BugListComponent {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
+  updateBug(event:string) {
+    this.bug.status = event; 
+    this.sub.add(
+      this.bugService.update(this.bug).subscribe({
+        next : () => {
+          console.log("bug updated")
+        }
+      })
+    )
+    console.log(event);
+    console.log("hellow worlds")
+  }
+
   viewBug(id:number) {
     this.bug = this.bugs.find(bug => bug.id === id)!;
     this.comments = this.bug.comments!;

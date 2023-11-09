@@ -22,4 +22,8 @@ export class CaseService {
     return this.http.get<TestCase[]>(`${environment.apiUrl}/test/${id}`, {withCredentials: true})
   }
 
+  getByUserId(id:string) {
+    return this.http.get<TestCase[]>(`${environment.apiUrl}/test/user/${id}`, {withCredentials: true})
+  }
+
 }

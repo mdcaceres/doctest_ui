@@ -1,14 +1,25 @@
-<div class="">
-    <button mat-icon-button (click)="openInvitagionDialog()">
-        <mat-icon aria-hidden="false" aria-label="add icon" fontIcon="add"></mat-icon>
-    </button>
+<h2 mat-dialog-title>{{project.name!}}</h2>
+<mat-dialog-content class="mat-typography">
+  <p>Start Date: {{ project.startDate | date }}</p>
+  <p>End Date: {{ project.endDate | date }}</p>
+  <p>{{ project.description }}</p>
 
-    <button mat-icon-button (click)="createTest()">
-        <mat-icon aria-hidden="false" aria-label="add icon" fontIcon="add"></mat-icon>
-    </button>
+  
+  <button mat-raised-button color="primary" (click)="openInvitationDialog()">Invite a team member</button>
 
-    <button mat-icon-button (click)="createBug()">
-        bug
-        <mat-icon aria-hidden="false" aria-label="add icon" fontIcon="add"></mat-icon>
-    </button>
-</div>
+
+  <button mat-raised-button color="accent" (click)="createTest()">Crear nuevo test</button>
+    
+  <button mat-icon-button (click)="createBug()">
+    <mat-icon>bug_report</mat-icon>
+  </button>
+    
+  <button mat-icon-button (click)="viewReports()">
+    <mat-icon>assessment</mat-icon>
+  </button>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
+  

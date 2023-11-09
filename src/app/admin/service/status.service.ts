@@ -5,9 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class StatusService {
 
-  bugStatus : any[] = [{name: "Assigned", id:1},{name: "Fixed", id:2},{name: "Resolved", id:3}];
+  bugStatus : any[] = [{name: "Assigned"},{name: "Fixing"},{name: "Resolved"}];
 
-  stepStatus : any[]  = [{name: "Passed", id:1},{name: "Failed", id:2},{name: "Blocked", id:3}];
+  stepStatus : any[]  = [{name: "Passed"},{name: "Failed"},{name: "Blocked"}];
+
+  executionStatus : any[] = [{name: "Passed"},{name: "Failed"},{name: "Blocked"}, {name: "Error"}];
 
   constructor() { }
 
@@ -17,6 +19,10 @@ export class StatusService {
 
   getStepStatuses() {
     return this.stepStatus;
+  }
+
+  getExecutionStatuses() { 
+    return this.executionStatus;
   }
 
 }

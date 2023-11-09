@@ -9,6 +9,7 @@ import { CreateProjectComponent } from '../project/create-project/create-project
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { Project } from '../../interfaces/project';
 import { ProjectService } from '../../service/project.service';
+import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
 
 @Component({
   selector: 'app-navigation',
@@ -76,6 +77,10 @@ export class NavigationComponent implements OnInit{
 
   openDialog() {
     this.dialog.open(CreateProjectComponent);
+  }
+
+  openTerms() {
+    this.dialog.open(TermsAndConditionComponent);
   }
 
   addProject(project: any) {

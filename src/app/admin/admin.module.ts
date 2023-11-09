@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProjectsListComponent } from './components/project/projects-list/projects-list.component';
@@ -20,7 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './service/project.service';
 import { ProjectInvitationComponent } from './components/project/project-invitation/project-invitation.component';
-import { MatOption, MatOptionModule } from '@angular/material/core';
+import { DateAdapter, MatOption, MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { UserService } from './service/user.service';
 import { InvitationService } from './service/invitation.service';
@@ -50,6 +50,14 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { TestExecutionComponent } from './components/execution/components/test-execution/test-execution.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { NgChartsModule } from 'ng2-charts';
+import {MatTabsModule} from '@angular/material/tabs';
+
+import { HealtReportComponent } from './components/reports/reports-dashboard/components/healt-report/healt-report.component';
+import { LineChartComponent } from './components/reports/reports-dashboard/components/line-chart/line-chart.component';
+import { TimeLineComponent } from './components/reports/reports-dashboard/components/time-line/time-line.component';
+import { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
+
 
 @NgModule({
   declarations: [
@@ -71,9 +79,14 @@ import {MatStepperModule} from '@angular/material/stepper';
     CreateBugComponent,
     BugListComponent,
     SafeHtmlPipe,
-    TestExecutionComponent
+    TestExecutionComponent,
+    HealtReportComponent,
+    LineChartComponent,
+    TimeLineComponent,
+    TermsAndConditionComponent
   ],
   imports: [
+    NgChartsModule,
     CommonModule,
     AdminRoutingModule,
     MatGridListModule,
@@ -87,6 +100,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatStepperModule,
     MatNativeDateModule,
     MatSidenavModule,
+    MatTabsModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
@@ -110,7 +124,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     ProjectService,
     UserService,
     InvitationService,
-    MessagingService
+    MessagingService,
+    DatePipe
   ]
 })
 export class AdminModule { }

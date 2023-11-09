@@ -26,7 +26,7 @@ export class ProjectDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectId = this.route.snapshot.params['id'];
+    this.projectId = localStorage.getItem('projectId')!;
     this.projectService.get(this.projectId).subscribe({
       next: (resp:any) => {
         this.project = resp.data.project! as Project;
@@ -40,7 +40,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   }
 
-  openInvitagionDialog() {
+  openInvitationDialog() {
     this.dialog.open(ProjectInvitationComponent, {
       data: {route: this.route}
     }); 
@@ -52,6 +52,10 @@ export class ProjectDashboardComponent implements OnInit {
 
   createBug() {
     this.router.navigate([`/admin/project/${this.projectId}/new_bug`]);
+  }
+
+  viewReports() {
+    this.router.navigate([`/admin/project/${this.projectId}/reports`]);
   }
 
 }

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PriorityService {
 
-  priorities: any[] = [{name: "High", id:1},{name: "Medium", id:2},{name: "Low", id:3}];
+  priorities: any[] = [{name: "Critical", id:1},{name: "High", id:2},{name: "Medium", id:3},{name: "Low", id:4}];
   constructor() { }
 
   getPriorities() {

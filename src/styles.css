@@ -8,4 +8,8 @@ body{
     margin: 0px;
 }
 
+.mat-drawer .mat-drawer-container {
+    background-color: red;
+}
+
 

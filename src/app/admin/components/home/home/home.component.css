@@ -1,2 +1,12 @@
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.test-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bug-card {
+    width: 350px;
+}

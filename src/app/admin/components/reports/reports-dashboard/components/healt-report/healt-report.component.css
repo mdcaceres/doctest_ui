@@ -1,0 +1,7 @@
+.bubble-card-container{
+    width: 80%;
+}
+
+.char-container {
+    display: flex;
+}

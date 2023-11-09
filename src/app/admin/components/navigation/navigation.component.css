@@ -74,6 +74,13 @@
   flex-direction: row;
 }
 
+.terms{
+  position: absolute;
+  bottom: 0px;
+}
+
+
+
 /*
 .logo-image {
   -webkit-filter: grayscale(100%); 

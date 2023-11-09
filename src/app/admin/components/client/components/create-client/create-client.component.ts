@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/admin/interfaces/client';
 import { ClientService } from 'src/app/admin/service/client.service';
 import swal  from 'sweetalert2';
@@ -9,8 +9,9 @@ import swal  from 'sweetalert2';
   templateUrl: './create-client.component.html',
   styleUrls: ['./create-client.component.css']
 })
-export class CreateClientComponent {
+export class CreateClientComponent{
   clientForm!: FormGroup;
+  client!: Client
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -27,7 +28,7 @@ export class CreateClientComponent {
   }
 
   onSubmit(): void {
-    const client: Client = {
+    this.client = {
       name: this.clientForm.value.name,
       email: this.clientForm.value.email,
       phone: this.clientForm.value.phone,
@@ -35,20 +36,18 @@ export class CreateClientComponent {
     };
 
     // Send the client data to the server or perform desired actions
-    console.log(client);
+    console.log(this.client);
 
-    this.clientService.create(client, this.data.userId).subscribe({
+    this.clientService.create(this.client, this.data.userId).subscribe({
       next: data => {
-        //this.dialog.closeAll();
       },
       error: err => {
         console.log(err); 
-        swal.fire("Error", "Error while saving the project", "error");
-        //this.dialog.closeAll();
+        swal.fire("Error", "Error while saving the client", "error");
+        this.dialog.closeAll();
       }
     })
 
-    // Reset the form
     this.clientForm.reset();
   }
 }

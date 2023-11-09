@@ -12,4 +12,6 @@ export interface TestCase {
     duration?: string;
     status?: string;
     project_id?: string;
+    created_at?: string;
+    updated_at?: string;
 }

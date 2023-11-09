@@ -19,8 +19,16 @@ export class BugService {
     return this.http.get<Bug[]>(`${environment.apiUrl}/project/${id}/bugs`, {withCredentials: true})
   }
 
+  getByUserIdAndStatus(id:string, status:string) {
+    return this.http.get<Bug[]>(`${environment.apiUrl}/user/${id}/bugs/status/${status}`, {withCredentials: true})
+  }
+
   addComment(comment:BugComment) {
     return this.http.post<Bug>(`${environment.apiUrl}/bug/comment`, comment, {withCredentials: true})
+  }
+
+  update(bug:Bug){
+    return this.http.put<Bug>(`${environment.apiUrl}/project/${bug.project_id}/bug/update`, bug, { withCredentials: true })
   }
 
 }

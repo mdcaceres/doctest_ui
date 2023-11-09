@@ -7,6 +7,8 @@ import { UserService } from 'src/app/admin/service/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { ProjectDashboardComponent } from '../project-dashboard/project-dashboard.component';
 
 @Component({
   selector: 'app-projects-list',
@@ -26,7 +28,8 @@ export class ProjectsListComponent implements OnInit {
   constructor(
     private projectService:ProjectService, 
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,
+    private matDialog: MatDialog) {}
 
 
   ngOnInit(): void {
@@ -47,7 +50,12 @@ export class ProjectsListComponent implements OnInit {
   }
 
   goToDashboard(id:string) {
-    this.router.navigate([`/admin/project/${id}`]);
+    //this.router.navigate([`/admin/project/${id}`]);
+    localStorage.setItem('projectId', id);
+
+    this.matDialog.open(ProjectDashboardComponent, {
+      data: {id: id}
+    });
   }
 
   applyFilter(event: Event) {

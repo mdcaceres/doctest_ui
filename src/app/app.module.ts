@@ -25,15 +25,17 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { UserService } from './admin/service/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatCardModule,
     MatButtonModule,

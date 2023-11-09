@@ -1,0 +1,24 @@
+
+<div class="char-container">
+
+        <mat-form-field appearance="fill" class="example-form-field">
+                <mat-label>Enter a start and end date</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker">
+                  <input matStartDate placeholder="Start date" formControlName="start">
+                  <input  matEndDate placeholder="End date" formControlName="end">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker>
+                  <mat-date-range-picker-actions>
+                    <button mat-button matDateRangePickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                  </mat-date-range-picker-actions>
+                </mat-date-range-picker>
+        </mat-form-field>
+
+        <canvas baseChart class="chart"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="lineChartType"></canvas>
+</div>
