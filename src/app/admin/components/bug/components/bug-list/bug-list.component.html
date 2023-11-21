@@ -51,9 +51,8 @@
           </div>
     
           <div class="chips">
-            <mat-chip-listbox aria-label="Status selection" formControlName="currentStatus">
-              <mat-chip-option>{{this.bug.status}}</mat-chip-option>
-            </mat-chip-listbox>
+          <i>current status </i> <br>
+              <mat-chip-option color="accent" selected>{{this.bug.status}}</mat-chip-option>
           </div>
 
           <div class="chips">

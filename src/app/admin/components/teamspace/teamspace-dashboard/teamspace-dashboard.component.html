@@ -1,1 +1,65 @@
-<p>teamspace-dashboard works!</p>
+<div class="container">
+    <div class="projects-container">
+          <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="#">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <div matListItemIcon class="project-image-container">
+                  <img [src]="'http://localhost:8080/img/' + element.image" alt="project image" class="project-image">
+                </div>
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="name">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                 {{element.name}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewElementPost(row.id)"></tr>
+          </table>
+    </div>
+
+
+    <div class="post-container" *ngIf="currentProject | async">
+        <mat-card>
+            <mat-card-header>
+                  <mat-card-title>New post </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div appearance="fill" class="photo-container">
+                    <input id="photoInput" #csvInput hidden="true" type="file" (change)="onFileSelected($event)">
+                    <button mat-flat-button color="primary" (click)="csvInput.click()">Choose File</button>
+                </div>
+                  <form [formGroup]="postForm" class="post-text">
+                    <mat-form-field class="field">
+                      <textarea matInput class="textarea" formControlName="comment"></textarea>
+                    </mat-form-field>
+                    <!--<button mat-raised-button #button color="primary" (click)="addPost(postForm.value.comment!)">Add</button>-->
+                  </form>
+            </mat-card-content>
+        </mat-card>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+        <mat-list id="mat-list-post" class="post-container">
+                    <mat-list-item class="li" *ngFor="let post of this.posts">
+                      <mat-card class="post">
+                        <mat-card-header>
+                          <div mat-card-avatar> <mat-icon>account_circle</mat-icon></div>
+                          <mat-card-subtitle>{{post.created_at | date}}</mat-card-subtitle>
+                          <mat-card-title>
+                           
+                            {{post.user_id!.toString() | userName | async}}</mat-card-title>
+                        </mat-card-header>
+                        <img [src]="post.image" *ngIf="post.image !== ''">
+                        <mat-card-content class="post">
+                          <div [innerHtml]="post.comment! | safeHtml"></div>
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                      </mat-card>
+                    </mat-list-item>
+        </mat-list>
+        
+    </div>
+</div>

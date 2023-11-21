@@ -1,0 +1,76 @@
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    
+} 
+
+.container{
+    display: flex; 
+    flex-direction: row;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.projects-container {
+    display: flex;
+    width: 20%;
+    flex-grow: 0;
+}
+
+.project-image-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .field {
+    flex-grow: 1;
+    padding: 5px;
+} 
+
+.post-container{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.li {
+    height: 100%;
+}
+
+.post-text {
+    width: 100%;
+} 
+
+.textarea {
+    flex-grow: 1;
+}
+
+.post-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.field {
+    flex-grow: 1;
+    padding: 5px;
+} 
