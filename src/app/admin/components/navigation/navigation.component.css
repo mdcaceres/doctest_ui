@@ -79,6 +79,11 @@
   bottom: 0px;
 }
 
+a.disabled{
+  cursor: not-allowed !important;
+  opacity: 0.5;
+  text-decoration: none;
+}
 
 
 /*

@@ -58,7 +58,6 @@ export class HealtReportComponent implements OnInit {
     let start = new Date(this.project.startDate!);
     let end = new Date(this.project.endDate!);
     this.dates = this.getDatesInRange(start, end);
-    //bubble chart
     this.bubbleChartOptions = {
       responsive: true,
       elements: {
@@ -88,33 +87,7 @@ export class HealtReportComponent implements OnInit {
         }
       },
     };
-    // bar chart
-    /*
-    this.barChartOptions= {
-      responsive: true,
-      indexAxis: 'y',
-      scales: {
-        x: {
-          min : this.firstDay.toDateString(),
-          type: 'time',
-          time: {
-            unit: 'day',
-          }
-        },
-        y: {
 
-        }
-      },
-      plugins: {
-        legend: {
-          display: true,
-        },
-        datalabels: {
-          anchor: 'end',
-          align: 'end'
-        }
-      }
-    };*/
     this.bugService.getAll(this.project.id!).subscribe({
       next: (resp:any) => {
         this.bugs = resp.data.bugs as Bug[];
@@ -145,14 +118,6 @@ export class HealtReportComponent implements OnInit {
           } ]
         }; 
 
-        /*
-        this.barChartData =  {
-          labels: ['Critical', 'High', 'Moderate', 'Minor', 'Cosmetic'],
-          datasets: [
-            { data: this.getBarData(), barPercentage: 0.1 }
-          ],
-        };
-        */
       }
     });
 

@@ -36,15 +36,17 @@ export class NavigationComponent implements OnInit{
     private dialog: MatDialog,
     private messagingService:MessagingService,
     private angularFireMessaging:AngularFireMessaging,
-    private projectService: ProjectService) {
+    public projectService: ProjectService) {
       
     }
 
   ngOnInit(): void {
-
     this.projectService.currentProject.subscribe(project => {
-      this.project = project as Project;
-      this.imgSrc = this.imgSrc != null ? "http://localhost:8080/img/" + this.project.image!.replace('uploads/', '')! : "";
+      let obj = {};
+      if (project !== obj) {
+        this.project = project as Project;
+        this.imgSrc = this.imgSrc != null ? "http://localhost:8080/img/" + this.project.image!.replace('uploads/', '')! : "";
+      }
     });
 
     this.messagingService.requestPermission(this.userId); 
@@ -84,9 +86,19 @@ export class NavigationComponent implements OnInit{
   }
 
   addProject(project: any) {
-    console.log("cambio projecto");
     this.project = project;
     this.imgSrc = "localhost:8080/" + this.project.image!.replace('uploads/', '');
   }
+
+  isProjectaSelected() {
+    let isSelected = false;
+    this.projectService.currentProject.subscribe(p => {
+    let selected = p as Project; 
+     if (selected.id !== undefined) 
+     isSelected = true;
+    })
+    return isSelected;
+  }
+
 
 }

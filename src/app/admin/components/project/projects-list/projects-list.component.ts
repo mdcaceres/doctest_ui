@@ -50,8 +50,8 @@ export class ProjectsListComponent implements OnInit {
   }
 
   goToDashboard(id:string) {
-    //this.router.navigate([`/admin/project/${id}`]);
     localStorage.setItem('projectId', id);
+
 
     this.matDialog.open(ProjectDashboardComponent, {
       data: {id: id}

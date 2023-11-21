@@ -63,19 +63,17 @@ export class LoginComponent implements OnInit, OnDestroy {
           let tigetToken = this.cookieService.get('X-Tiger-Token');
           let decoded = jwt_decode<Claims>(tigetToken);
 
+          console.log(decoded.Roles)
+
           localStorage.setItem('userId', JSON.stringify(decoded.ID));
           localStorage.setItem('userName', decoded.user_name!);
           localStorage.setItem('token', tigetToken)
 
-          let roles = new Map<number,string>(); 
+          let roles = Array.from(decoded.Roles!)
 
+          let arr : string = JSON.stringify(roles.map(r => r.name));
 
-          for(let role of decoded.Roles!) {
-            let userRole = role as Role; 
-            roles.set(userRole.ID!, userRole.name!); 
-          }
-
-          localStorage.setItem('roles', JSON.stringify(Array.from(roles.entries())))
+          localStorage.setItem('roles', arr);
 
           this.router.navigate(['./admin/home'])
         },

@@ -7,5 +7,5 @@ export enum Roles {
 
 export interface Role {
     ID?: number,
-    name?: string
+    name?: string,
 }

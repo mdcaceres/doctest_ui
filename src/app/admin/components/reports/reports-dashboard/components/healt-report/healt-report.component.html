@@ -1,15 +1,12 @@
 <div class="char-container">
   <mat-card class="bubble-card-container">
-    <mat-card-header>
-      <mat-card-title>Bugs</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
       <canvas baseChart class="chart"
-    [data]="bubbleChartData"
-    [options]="bubbleChartOptions"
-    [legend]="true"
-    [type]="bubbleChartType">
-    </canvas>
+        [data]="bubbleChartData"
+        [options]="bubbleChartOptions"
+        [legend]="true"
+        [type]="bubbleChartType">
+      </canvas>
     </mat-card-content>
   </mat-card>
 
@@ -61,13 +58,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-
-
-<!--
-
-  <canvas baseChart class="chart"
-  [data]="barChartData"
-  [options]="barChartOptions"
-  [type]="barChartType">
-</canvas>
-</div>-->

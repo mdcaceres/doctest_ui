@@ -80,14 +80,10 @@
 
         <mat-nav-list>
           <div>
-            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/suites'">Suites</a>
-            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/tests'">Test Cases</a>
-            <a mat-list-item [routerLink]="'./project/' + this.project.id + '/bugs'">Bugs</a>
-    
-            <!--<a mat-list-item href="#">Executions</a>-->
-
-            <a mat-list-item class="terms" (click)="openTerms()">Terms and Conditions</a>
-
+            <mat-list-item [disabled]="!isProjectaSelected()" [routerLink]="'./project/' + this.project.id + '/suites'">Suites</mat-list-item>
+            <mat-list-item [disabled]="!isProjectaSelected()" [routerLink]="'./project/' + this.project.id + '/tests'">Test Cases</mat-list-item>
+            <mat-list-item [disabled]="!isProjectaSelected()" [routerLink]="'./project/' + this.project.id + '/bugs'">Bugs</mat-list-item>
+            <mat-list-item class="terms" (click)="openTerms()">Terms and Conditions</mat-list-item>
           </div>
         </mat-nav-list>
       </mat-sidenav>

@@ -1,8 +1,11 @@
+import { map } from "rxjs"
+import { Role } from "./role"
+
 export interface Claims {
     CreatedAt?: string,
     DeletedAt?: string,
     ID?: number,
-    Roles?: string[],
+    Roles?: Role[],
     UpdatedAt?: string
     exp?: number
     iat?: number
