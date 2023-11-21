@@ -12,6 +12,8 @@ import { TestListComponent } from './components/test/components/test-list/test-l
 import { BugListComponent } from './components/bug/components/bug-list/bug-list.component';
 import { CreateBugComponent } from './components/bug/components/create-bug/create-bug.component';
 import { TestExecutionComponent } from './components/execution/components/test-execution/test-execution.component';
+import { InLoggedInGuard } from '../auth/guards/in-logged-in.guard';
+import { HasRoleGuard } from '../auth/guards/has-role.guard';
 
 
 const routes: Routes = [
@@ -20,7 +22,7 @@ const routes: Routes = [
     component: NavigationComponent,
     children: [
       {path: 'home', component: HomeComponent},
-      {path:'teamspace', component: TeamspaceDashboardComponent},
+      {path:'teamspace', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER" , "ADMIN"]}, component: TeamspaceDashboardComponent},
       {path:'bugs', component: BugListComponent},
       {path:'project/:id', component: ProjectDashboardComponent},
       {path:'project/:id/new_test', component: CreateTestComponent},
@@ -29,7 +31,7 @@ const routes: Routes = [
       {path:'project/:id/bugs', component: BugListComponent},
       {path:'project/:id/new_bug', component: CreateBugComponent},
       {path:'project/:id/reports', component: ReportsDashboardComponent},
-      {path: 'projects', component: ProjectsListComponent},
+      {path: 'projects', canActivate: [InLoggedInGuard], component: ProjectsListComponent},
       {path: 'test/:id/execution', component: TestExecutionComponent},
     ]
   },

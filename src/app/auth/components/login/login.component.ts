@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
           localStorage.setItem('userId', JSON.stringify(decoded.ID));
           localStorage.setItem('userName', decoded.user_name!);
+          localStorage.setItem('token', tigetToken)
 
           let roles = new Map<number,string>(); 
 
