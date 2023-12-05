@@ -1,16 +1,5 @@
 <div class="char-container">
-  <mat-card class="bubble-card-container">
-    <mat-card-content>
-      <canvas baseChart class="chart"
-        [data]="bubbleChartData"
-        [options]="bubbleChartOptions"
-        [legend]="true"
-        [type]="bubbleChartType">
-      </canvas>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="-card">
+<mat-card class="severity-card">
     <mat-card-header>
       <mat-card-title>Serveties</mat-card-title>
     </mat-card-header>
@@ -56,5 +45,19 @@
         </mat-list-item>
       </mat-list>
     </mat-card-content>
-  </mat-card>
+</mat-card>
+
+<mat-card class="priority-card">
+  <mat-card-header>
+    <mat-card-title>Priority</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+    baseChart
+    class="chart"
+    [data]="doughnutChartData"
+    [type]="doughnutChartType" >
+  </canvas>
+  </mat-card-content>
+</mat-card>
 </div>

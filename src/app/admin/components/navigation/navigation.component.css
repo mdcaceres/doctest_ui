@@ -85,10 +85,10 @@ a.disabled{
   text-decoration: none;
 }
 
-
-/*
-.logo-image {
-  -webkit-filter: grayscale(100%); 
-  filter: grayscale(100%);
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
 }
-*/

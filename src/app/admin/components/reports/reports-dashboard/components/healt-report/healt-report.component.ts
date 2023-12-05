@@ -46,6 +46,10 @@ export class HealtReportComponent implements OnInit {
   public barChartPlugins = [
     DataLabelsPlugin
   ];
+  criticalPriorityBugs!: number;
+  highPriorityBugs!: number;
+  mediumPriorityBugs!: number;
+  lowPriorityBugs!: number;
 
   constructor(private projectService: ProjectService, private datePipe: DatePipe, private bugService: BugService) {
     this.project = this.projectService.getCurrent();
@@ -92,6 +96,8 @@ export class HealtReportComponent implements OnInit {
       next: (resp:any) => {
         this.bugs = resp.data.bugs as Bug[];
         this.getFilterBugsBySeverities();
+        this.getFilterBugsByPriority();
+        //this.getFilterBugsByStatus();
         
 
         this.bubbleChartData = {
@@ -118,6 +124,13 @@ export class HealtReportComponent implements OnInit {
           } ]
         }; 
 
+        this.doughnutChartData = {
+          labels: this.doughnutChartLabels,
+          datasets: [
+            { data: [this.criticalPriorityBugs, this.highPriorityBugs, this.mediumPriorityBugs, this.lowPriorityBugs]},
+          ],
+        };
+
       }
     });
 
@@ -132,7 +145,15 @@ export class HealtReportComponent implements OnInit {
     this.cosmeticBugs = s.filter(bug => bug == 'Cosmetic').length;
   }
 
-    getDatesInRange(startDate:Date, endDate:Date) {
+  getFilterBugsByPriority() {
+    let s = this.bugs.map(bug => bug.priority)
+    this.criticalPriorityBugs = s.filter(bug => bug == 'Critical').length;
+    this.highPriorityBugs = s.filter(bug => bug == 'High').length;
+    this.mediumPriorityBugs = s.filter(bug => bug == 'Medium').length;
+    this.lowPriorityBugs = s.filter(bug => bug == 'Low').length;
+  }
+
+  getDatesInRange(startDate:Date, endDate:Date) {
       const date = new Date(startDate.getTime());
     
       const dates = [];
@@ -144,10 +165,10 @@ export class HealtReportComponent implements OnInit {
       }
     
       return dates;
-    }
+  }
 
 
-    getData() {
+  getData() {
       let data: any[] = [];
       this.bugs.forEach(bug => {
         let d = bug.due?.slice(0, 10);
@@ -163,9 +184,9 @@ export class HealtReportComponent implements OnInit {
       });
   
       return data;
-    }
+  }
 
-    getBarData() {
+  getBarData() {
       let data: any[] = [];
       this.bugs.forEach(bug => {
         let d = bug.due?.slice(0, 10);
@@ -177,6 +198,38 @@ export class HealtReportComponent implements OnInit {
       });
   
       return data;
-    }
+  }
+
+  public doughnutChartLabels: string[] = [
+    'Critical',
+    'High',
+    'Medium',
+    'Low'
+  ];
+
+  public doughnutChartData!: ChartData<'doughnut'>;
+
+  public doughnutChartType: ChartType = 'doughnut';
+
+  // events
+  public chartClicked({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: object[];
+  }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: object[];
+  }): void {
+    console.log(event, active);
+  }
 
 }

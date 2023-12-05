@@ -4,9 +4,18 @@
 .test-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .bug-card {
-    width: 350px;
+    width: 365px;
+}
+
+.test-card {
+    flex: 0 1 auto;
+    align-items: stretch;
+    width: 300px;
 }

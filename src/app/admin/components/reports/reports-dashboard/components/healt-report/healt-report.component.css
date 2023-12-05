@@ -1,7 +1,11 @@
-.bubble-card-container{
-    width: 80%;
-}
-
 .char-container {
     display: flex;
+}
+
+.priority-card {
+ flex-grow: 1;
+}
+
+.severity-card {
+    flex-grow: 0;
 }

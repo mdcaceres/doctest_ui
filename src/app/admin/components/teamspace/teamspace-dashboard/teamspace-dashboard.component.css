@@ -5,23 +5,16 @@
     color: rgba(0, 0, 0, 0.54);
 }
 
-.list {
-    display: flex;
-    flex-direction: column;
-    
-} 
-
 .container{
     display: flex; 
     flex-direction: row;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    align-items: stretch;
 }
 
 .projects-container {
     display: flex;
-    width: 20%;
+    align-items: flex-start;
     flex-grow: 0;
 }
 
@@ -32,23 +25,23 @@
     overflow: hidden;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
+}
   
-  .project-image {
+.project-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
 
-  .field {
+.field {
     flex-grow: 1;
     padding: 5px;
 } 
 
 .post-container{
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .li {
@@ -74,3 +67,16 @@
     flex-grow: 1;
     padding: 5px;
 } 
+
+.post-content {
+    display: flex;
+    flex-grow: 1;
+}
+
+mat-card img{
+    object-fit: cover; /*this makes the image in src fit to the size specified below*/
+    width: 60%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+    height: 40%;
+    flex-shrink: 0;
+    align-self: center;
+}

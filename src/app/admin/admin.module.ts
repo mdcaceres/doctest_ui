@@ -57,6 +57,7 @@ import { HealtReportComponent } from './components/reports/reports-dashboard/com
 import { LineChartComponent } from './components/reports/reports-dashboard/components/line-chart/line-chart.component';
 import { TimeLineComponent } from './components/reports/reports-dashboard/components/time-line/time-line.component';
 import { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({

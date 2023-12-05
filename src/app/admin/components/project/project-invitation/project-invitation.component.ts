@@ -12,6 +12,7 @@ import swal from 'sweetalert2';
 import { ProjectDashboardComponent } from '../project-dashboard/project-dashboard.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProjectService } from 'src/app/admin/service/project.service';
 
 @Component({
   selector: 'app-project-invitation',
@@ -36,7 +37,8 @@ export class ProjectInvitationComponent implements OnInit, OnDestroy {
     private messaging: MessagingService,
     @Inject(MAT_DIALOG_DATA) private data: {route: ActivatedRoute},
     public dialogRef: MatDialogRef<ProjectDashboardComponent>,
-    private MatSnackbar: MatSnackBar) {
+    private MatSnackbar: MatSnackBar,
+    private projectService: ProjectService) {
   }
 
   ngOnInit(): void {
@@ -49,9 +51,10 @@ export class ProjectInvitationComponent implements OnInit, OnDestroy {
       ]
     }, { updateOn: 'blur' })
 
-    this.data.route.params.subscribe(params => {
-      this.projectId = JSON.stringify(params['id']);
-      console.log(this.projectId);
+    this.projectService.currentProject.subscribe({
+    next: (i) => {
+    this.projectId = JSON.stringify(i.id)
+    }
     });
   }
 
@@ -64,7 +67,7 @@ export class ProjectInvitationComponent implements OnInit, OnDestroy {
     let invitation: Invitation = {
       inviterId: `${this.userId}`,
       invitedId: `${this.invitedId}`,
-      ProjectId: this.projectId.replace(/"/g,''),
+      ProjectId: this.projectId,
       role: `${this.invitationForm.value.role}`
     }
 

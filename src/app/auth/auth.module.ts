@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './components/signup/signup.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({

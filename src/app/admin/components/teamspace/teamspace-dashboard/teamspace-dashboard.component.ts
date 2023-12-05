@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, SecurityContext, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,7 +10,7 @@ import { ProjectService } from 'src/app/admin/service/project.service';
 import { UserService } from 'src/app/admin/service/user.service';
 import { ProjectDashboardComponent } from '../../project/project-dashboard/project-dashboard.component';
 import { Img } from 'src/app/admin/interfaces/img';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PostService } from 'src/app/admin/service/post.service';
@@ -39,6 +39,7 @@ export class TeamspaceDashboardComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  imageUrl!: SafeUrl;
 
   constructor(
     private fb : FormBuilder,
@@ -68,7 +69,8 @@ export class TeamspaceDashboardComponent {
     );
 
     this.postForm = this.fb.group({
-      comment: ['']
+      comment: [''],
+      name: ['']
     });
   }
 
@@ -85,7 +87,11 @@ export class TeamspaceDashboardComponent {
         "url": this.sanitizer.bypassSecurityTrustUrl(this.cardImageBase64)
       };
       this.projectImg = img;
+      this.imageUrl = img.url;
     };
+
+    console.log("image safe url")
+    console.log("http://localhost:8080/img/" + this.imageUrl);
   }
 
   viewElementPost(id:string) {
@@ -93,17 +99,34 @@ export class TeamspaceDashboardComponent {
     this.postService.getAll(id).subscribe({
       next: (resp:any) => {
         this.posts = resp.data.Post! as Post[];
+        for(let p of this.posts) {
+          p.Image = p.Image!.replace('uploads/', '');
+        }
+        this.posts.forEach(p =>console.log(p.Image!))
       }
     })
   }
 
   setCurrentProject(id:string) {
     this.project.next(id)
-    
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
+
+  addPost(postForm:FormGroup): void {
+    let post : Post = {
+      project_id: this.project.getValue(),
+      comment: postForm.value.comment,
+    }
+
+    this.postService.create(post).subscribe({
+      next : () => {
+        console.log("postcreated");
+      }
+    })
+  }
+
 }

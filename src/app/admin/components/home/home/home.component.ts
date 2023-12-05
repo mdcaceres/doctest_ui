@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
 
   users: User[] = [];
   statuses: any[] = [];
+  testToRender!: any[];
   
 
 
@@ -102,6 +103,7 @@ export class HomeComponent implements OnInit {
       this.testService.getByUserId(this.userId).subscribe({
         next: (resp: any) => {
           this.tests = resp.data.cases as TestCase[]
+          this.testToRender = this.tests.slice(-4);
         }, 
         error : () => {
           console.log("error on getting test cases")
@@ -134,7 +136,7 @@ export class HomeComponent implements OnInit {
 
 
     this.sub.add(
-      this.bugService.getByUserIdAndStatus(this.userId, "Fixed").subscribe({
+      this.bugService.getByUserIdAndStatus(this.userId, "Fixing").subscribe({
         next: (resp: any) => {
           this.inProgressBugs = resp.data.bugs as Bug[];
         },

@@ -24,6 +24,7 @@ import { AsyncPipe } from '@angular/common';
 import {MatBadgeModule} from '@angular/material/badge';
 import { UserService } from './admin/service/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JwtModule, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 
 
@@ -50,9 +51,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    HttpClientModule
+    HttpClientModule,
+    JwtModule
   ],
-  providers: [MessagingService, AsyncPipe],
+  providers: [MessagingService, AsyncPipe, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
