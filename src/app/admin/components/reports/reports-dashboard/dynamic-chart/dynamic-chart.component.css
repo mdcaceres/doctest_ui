@@ -1,0 +1,10 @@
+.date_picker_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+button{
+    margin-left: 35px;
+}

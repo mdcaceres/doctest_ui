@@ -30,9 +30,9 @@ const routes: Routes = [
       {path:'project/:id/tests', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER" , "ADMIN", "CLIENT"]}, component: TestListComponent},
       {path:'project/:id/bugs', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER" , "ADMIN", "CLIENT"]},  component: BugListComponent},
       {path:'project/:id/new_bug', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER"]}, component: CreateBugComponent},
-      {path:'project/:id/reports', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["ADMIN"]}, component: ReportsDashboardComponent},
+      {path:'project/:id/reports', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["CLIENT"]}, component: ReportsDashboardComponent},
       {path: 'projects',canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER" , "ADMIN", "CLIENT"]},  component: ProjectsListComponent},
-      {path: 'test/:id/execution', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER" , "ADMIN", "CLIENT"]}, component: TestExecutionComponent},
+      {path: 'test/:id/execution', canActivate:[InLoggedInGuard,HasRoleGuard], data: {allowedRoles:["TESTER"]}, component: TestExecutionComponent},
     ]
   },
 

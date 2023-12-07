@@ -56,7 +56,7 @@
           <p>{{userName}}</p>
           <button mat-menu-item>View profile</button>
           <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/auth/login" routerLinkActive="active">
+          <button mat-menu-item routerLink="/auth/login" (click)="logOut()" routerLinkActive="active">
             <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout"></mat-icon>
           </button>
         </mat-menu>

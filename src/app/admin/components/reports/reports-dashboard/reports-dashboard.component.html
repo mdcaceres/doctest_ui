@@ -1,6 +1,13 @@
-<div id="report-container">
-    <app-time-line></app-time-line>
-    <app-healt-report [start]="myStart" [end]="myEnd"></app-healt-report>
-</div>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Bugs">
+        <app-time-line></app-time-line>
+        <app-healt-report [start]="myStart" [end]="myEnd"></app-healt-report>
+    </mat-tab>
+        
+    <mat-tab label="Test results">
+        <app-dynamic-chart></app-dynamic-chart>
+    </mat-tab>
+</mat-tab-group>
+    
 
 

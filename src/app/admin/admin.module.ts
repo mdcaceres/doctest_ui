@@ -58,6 +58,7 @@ import { LineChartComponent } from './components/reports/reports-dashboard/compo
 import { TimeLineComponent } from './components/reports/reports-dashboard/components/time-line/time-line.component';
 import { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DynamicChartComponent } from './components/reports/reports-dashboard/dynamic-chart/dynamic-chart.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     HealtReportComponent,
     LineChartComponent,
     TimeLineComponent,
-    TermsAndConditionComponent
+    TermsAndConditionComponent,
+    DynamicChartComponent
   ],
   imports: [
     NgChartsModule,

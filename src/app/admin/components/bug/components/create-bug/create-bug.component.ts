@@ -36,6 +36,7 @@ export class CreateBugComponent implements OnInit{
   authorName!: string;
   projectDue!: Date;
   start!: Date;
+  owner!:string;
 
 
   constructor(private fb : FormBuilder,
@@ -55,6 +56,7 @@ export class CreateBugComponent implements OnInit{
   ngOnInit(): void {
     this.authorName = localStorage.getItem('userName')!;
     let owner = JSON.parse(localStorage.getItem('userId')!);
+    this.owner = JSON.parse(localStorage.getItem('userId')!);
     this.currentProjectId = this.route.snapshot.paramMap.get('id')!;
     this.types = this.typeService.getBugTypes();
     this.priorities = this.priorityService.getPriorities();
@@ -126,6 +128,7 @@ export class CreateBugComponent implements OnInit{
 
         this.snackBar.open("saved", "✅")
         this.bugForm.reset();
+        this.bugForm.get("owner")!.setValue(this.owner);
       }, 
       error: (err) => {
         console.log(err);

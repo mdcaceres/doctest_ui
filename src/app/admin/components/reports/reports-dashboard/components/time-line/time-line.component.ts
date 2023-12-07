@@ -94,7 +94,7 @@ export class TimeLineComponent implements AfterViewInit  {
   getCreatedAtCantByMonths(arr:Bug[]){
     let data = new Map(); 
     let months = this.bugs.map(b => new Date(b.created_at!).getMonth());
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 0; i <= 12; i++) {
       let f = months.filter(m => m==i);
       data.set(i,f.length);
     }
@@ -105,7 +105,7 @@ export class TimeLineComponent implements AfterViewInit  {
   getDueAtCantByMonths(arr:Bug[]){
     let data = new Map(); 
     let months = this.bugs.map(b => new Date(b.due!).getMonth());
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 0; i <= 12; i++) {
       let f = months.filter(m => m==i);
       data.set(i,f.length);
     }

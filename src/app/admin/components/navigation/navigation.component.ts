@@ -17,6 +17,10 @@ import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-con
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit{
+logOut() {
+  localStorage.removeItem('roles');
+  localStorage.clear();
+}
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
   notifications! : Notification[]; 
   hidden = false;
